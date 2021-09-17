@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/income_add_saveImage_option"
+        android:icon="@drawable/ic_save_white"
+        android:title="추가"
+        app:showAsAction="ifRoom"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/income_add_saveText_option"
+        android:title="추가하기"
+        app:showAsAction="never"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/income_add_close_option"
+        android:title="끝내기"
+        app:showAsAction="never"
+        tools:ignore="HardcodedText" />
+</menu>

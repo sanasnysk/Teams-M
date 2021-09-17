@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/cost_table_addImage_option"
+        android:icon="@drawable/ic_add_white"
+        android:title="추가"
+        app:showAsAction="ifRoom"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/cost_table_newImage_option"
+        android:icon="@drawable/ic_autorenew_white"
+        android:title="새로고침"
+        app:showAsAction="ifRoom"
+        tools:ignore="HardcodedText" />
+
+    <item android:id="@+id/cost_table_addText_option"
+        android:title="추가하기"
+        app:showAsAction="never"
+        tools:ignore="HardcodedText"/>
+
+    <item
+        android:id="@+id/cost_table_close_option"
+        android:title="끝내기"
+        app:showAsAction="never"
+        tools:ignore="HardcodedText"/>
+</menu>

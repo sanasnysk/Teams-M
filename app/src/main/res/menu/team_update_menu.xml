@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/update_text_team_option"
+        android:title="수정하기"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/delete_text_team_option"
+        android:title="삭제하기"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/back_text_team_option"
+        android:title="돌아가기"
+        tools:ignore="HardcodedText" />
+
+</menu>

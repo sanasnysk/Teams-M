@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/team_add_option"
+        android:title="팀 등록 추가"
+        app:showAsAction="never"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/team_close_option"
+        android:title="돌아가기"
+        app:showAsAction="never"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/taem_add_image_option"
+        android:icon="@drawable/ic_add_white"
+        android:title="팀 등록 추가"
+        app:showAsAction="ifRoom"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/team_newimage_option"
+        android:icon="@drawable/ic_autorenew_white"
+        android:title="새로고침"
+        app:showAsAction="ifRoom"
+        tools:ignore="HardcodedText" />
+
+</menu>

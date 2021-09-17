@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Sites.SitesTable">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/site_table_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorLightBlue"
+        android:minHeight="?actionBarSize"
+        android:theme="?attr/actionBarStyle">
+
+        <ImageButton
+            android:id="@+id/site_back_btn_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="10dp"
+            android:background="@color/colorLightBlue"
+            android:padding="1dp"
+            android:src="@drawable/arrow_back_white"
+            tools:ignore="ContentDescription,RtlCompat,RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/txt_site_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="clip_vertical"
+            android:layout_marginStart="10dp"
+            android:text="현장 테이블"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText,RtlCompat" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/site_edit_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="2dp"
+            android:background="@drawable/edit_background"
+            android:drawableStart="@drawable/ic_search_white"
+            android:hint=" 현장 이름을 입력 하세요?"
+            android:importantForAutofill="no"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText,RtlCompat,TextFields" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="5dp"
+        tools:ignore="RtlCompat">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="UselessParent">
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="ScrollViewSize">
+
+                <TableLayout
+                    android:id="@+id/site_table"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorLightBlue"
+                    android:collapseColumns="0,8"
+                    android:padding="1dp"
+                    android:shrinkColumns="0"
+                    android:stretchColumns="*">
+
+                </TableLayout>
+
+            </HorizontalScrollView>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</LinearLayout>

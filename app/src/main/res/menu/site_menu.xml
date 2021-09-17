@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/site_add_option"
+        android:title="현장 등록 추가"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/site_close_option"
+        android:title="현장 리스트 닫기"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/site_add_image_option"
+        android:icon="@drawable/ic_add_white"
+        android:title="추가"
+        app:showAsAction="ifRoom|withText"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/site_newimage_option"
+        android:icon="@drawable/ic_autorenew_white"
+        android:title="새로고침"
+        app:showAsAction="ifRoom"
+        tools:ignore="HardcodedText" />
+
+</menu>

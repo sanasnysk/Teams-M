@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Teams.TeamsTable">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/team_table_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorLightBlue"
+        android:minHeight="?actionBarSize"
+        android:theme="?attr/actionBarStyle">
+
+        <ImageButton
+            android:id="@+id/team_back_btn_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="10dp"
+            android:background="@color/colorLightBlue"
+            android:padding="7.1dp"
+            android:src="@drawable/arrow_back_white"
+            tools:ignore="ContentDescription,RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/txt_main_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="clip_vertical"
+            android:layout_weight="1"
+            android:text="팀 테이블"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            tools:ignore="HardcodedText,RtlCompat" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/etxt_team_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/edit_background"
+            android:drawableEnd="@drawable/ic_search_white"
+            android:hint=" 팀 이름을 입력 하세요?"
+            android:importantForAutofill="no"
+            android:textSize="18sp"
+            android:textAlignment="center"
+            tools:ignore="HardcodedText,TextFields" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="5dp"
+        tools:ignore="RtlCompat">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            tools:ignore="UselessParent">
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TableLayout
+                    android:id="@+id/table_team"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorLightBlue"
+                    android:collapseColumns="0"
+                    android:padding="1dp"
+                    android:shrinkColumns="0"
+                    android:stretchColumns="*">
+
+                </TableLayout>
+
+            </HorizontalScrollView>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</LinearLayout>

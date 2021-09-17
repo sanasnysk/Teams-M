@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="sansany.theteams">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/img_00007s"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/img_00007s"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyTeams"
+        tools:ignore="AllowBackup">
+        <activity
+            android:name="com.sansany.theteams.Cost.CostTable"
+            android:exported="true" />
+        <activity
+            android:name="com.sansany.theteams.Cost.CostList"
+            android:exported="true" />
+        <activity
+            android:name="com.sansany.theteams.Cost.CostEdit"
+            android:exported="true" />
+        <activity
+            android:name="com.sansany.theteams.Cost.CostAdd"
+            android:exported="true" />
+        <activity
+            android:name="com.sansany.theteams.Incomes.IncomeTable"
+            android:exported="true" />
+        <activity
+            android:name="com.sansany.theteams.Incomes.IncomeList"
+            android:exported="true" />
+        <activity
+            android:name="com.sansany.theteams.Incomes.IncomeEdit"
+            android:exported="true" />
+        <activity
+            android:name="com.sansany.theteams.Incomes.IncomeAdd"
+            android:exported="true" />
+        <activity
+            android:name="com.sansany.theteams.Journals.JournalTable"
+            android:exported="true" />
+        <activity
+            android:name="com.sansany.theteams.Journals.JournalList"
+            android:exported="true" />
+        <activity
+            android:name="com.sansany.theteams.Journals.JournalEdit"
+            android:exported="true" />
+        <activity
+            android:name="com.sansany.theteams.Journals.JournalAdd"
+            android:exported="true" />
+        <activity
+            android:name="com.sansany.theteams.Sites.SitesTable"
+            android:exported="true" />
+        <activity
+            android:name="com.sansany.theteams.Sites.SitesList"
+            android:exported="true" />
+        <activity
+            android:name="com.sansany.theteams.Sites.SitesEdit"
+            android:exported="true" />
+        <activity
+            android:name="com.sansany.theteams.Sites.SitesAdd"
+            android:exported="true" />
+        <activity
+            android:name="com.sansany.theteams.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.sansany.theteams.Teams.TeamsTable" />
+        <activity android:name="com.sansany.theteams.Teams.TeamsList" />
+        <activity android:name="com.sansany.theteams.Teams.TeamsEdit" />
+        <activity android:name="com.sansany.theteams.Teams.TeamsAdd" />
+    </application>
+
+</manifest>

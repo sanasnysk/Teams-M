@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Teams.TeamsEdit">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/update_team_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorLightBlue"
+        android:minHeight="?actionBarSize"
+        android:theme="?attr/actionBarStyle">
+
+        <ImageButton
+            android:id="@+id/team_update_back_btn_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:background="@color/colorLightBlue"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:padding="7.1dp"
+            android:src="@drawable/arrow_back_white"
+            tools:ignore="ContentDescription,RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/update_team_text_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="clip_vertical"
+            android:layout_marginStart="10dp"
+            android:text="팀 정보 수정"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            tools:ignore="HardcodedText,RtlCompat" />
+
+        <ImageButton
+            android:id="@+id/team_update_edit_btn_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_weight="0"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            android:background="@color/colorLightBlue"
+            android:padding="2dp"
+            android:src="@drawable/ic_update_white"
+            tools:ignore="ContentDescription,RtlHardcoded" />
+
+        <ImageButton
+            android:id="@+id/team_update_delete_btn_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_weight="0"
+            android:layout_marginStart="1dp"
+            android:layout_marginLeft="1dp"
+            android:background="@color/colorLightBlue"
+            android:padding="2dp"
+            android:src="@drawable/ic_delete_forever_white"
+            tools:ignore="ContentDescription,RtlHardcoded" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        tools:ignore="UselessLeaf">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="2dp"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:text="팀 ID"
+                android:textAlignment="center"
+                android:focusable="false"
+                android:padding="3dp"
+                android:textSize="18sp"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText,TextFields"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:text="팀 장"
+                android:textAlignment="center"
+                android:focusable="false"
+                android:padding="3dp"
+                android:textSize="18sp"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText,TextFields"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:text="전화번호"
+                android:textAlignment="center"
+                android:focusable="false"
+                android:padding="3dp"
+                android:textSize="18sp"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText,TextFields"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:text="등록일자"
+                android:textAlignment="center"
+                android:focusable="false"
+                android:padding="3dp"
+                android:textSize="18sp"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText,TextFields"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:text="팀 메모"
+                android:textAlignment="center"
+                android:focusable="false"
+                android:padding="3dp"
+                android:textSize="18sp"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText,TextFields"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:text="ID"
+                android:textAlignment="center"
+                android:focusable="false"
+                android:padding="3dp"
+                android:textSize="18sp"
+                android:visibility="invisible"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText,TextFields"
+                android:gravity="center_horizontal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="10dp">
+
+            <EditText
+                android:id="@+id/edit_team_update_tid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:hint="팀 ID"
+                android:textAlignment="center"
+                android:focusable="false"
+                android:padding="3dp"
+                android:textSize="18sp"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText,TextFields"
+                android:gravity="center_horizontal" />
+
+            <EditText
+                android:id="@+id/edit_team_update_leader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:hint="팀 이름"
+                android:textAlignment="center"
+                android:focusable="true"
+                android:padding="3dp"
+                android:textSize="18sp"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText,TextFields"
+                android:gravity="center_horizontal" />
+
+            <EditText
+                android:id="@+id/edit_team_update_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:hint="전화번호"
+                android:textAlignment="center"
+                android:focusable="true"
+                android:padding="3dp"
+                android:textSize="18sp"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText,TextFields"
+                android:gravity="center_horizontal" />
+
+            <EditText
+                android:id="@+id/edit_team_update_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:hint="등록일자"
+                android:textAlignment="center"
+                android:focusable="false"
+                android:padding="3dp"
+                android:textSize="18sp"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText,TextFields"
+                android:gravity="center_horizontal" />
+
+            <EditText
+                android:id="@+id/edit_team_update_memo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:hint="팀 메모 "
+                android:textAlignment="center"
+                android:focusable="true"
+                android:padding="3dp"
+                android:textSize="18sp"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText,TextFields"
+                android:gravity="center_horizontal" />
+
+            <EditText
+                android:id="@+id/edit_team_update_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:hint="ID"
+                android:textAlignment="center"
+                android:padding="3dp"
+                android:textSize="18sp"
+                android:visibility="invisible"
+                android:focusable="false"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText,TextFields"
+                android:gravity="center_horizontal" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

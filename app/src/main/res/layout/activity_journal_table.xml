@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorLightBlue_L"
+    tools:context=".Journals.JournalTable">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/journal_table_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorLightBlue"
+        android:minHeight="?actionBarSize"
+        android:theme="?attr/actionBarStyle">
+
+        <ImageButton
+            android:id="@+id/journal_table_back_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:background="@color/colorLightBlue"
+            android:layout_marginStart="10dp"
+            android:padding="1dp"
+            android:src="@drawable/arrow_back_white"
+            tools:ignore="ContentDescription,RtlCompat,RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/txt_journal_table_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_gravity="clip_horizontal"
+            android:layout_weight="1"
+            android:text="일지 테이블"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:lines="1"
+            android:maxLines="1"
+            tools:ignore="HardcodedText,RtlCompat" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="1dp"
+        android:layout_marginTop="3dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/journal_edit_startDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="2dp"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:hint="Start Date"
+            android:padding="1dp"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText,RtlCompat,TextFields"
+            android:importantForAutofill="no" />
+
+        <EditText
+            android:id="@+id/journal_edit_endDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="2dp"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:hint="Start Date"
+            android:padding="1dp"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText,RtlCompat,TextFields"
+            android:importantForAutofill="no" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="1dp"
+        android:layout_marginTop="1dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/journal_table_site_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="2dp"
+            android:background="@drawable/edit_background"
+            android:drawableStart="@drawable/ic_search_white"
+            android:hint=" 현장 이름을 입력 하세요?"
+            android:importantForAutofill="no"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText,RtlCompat,TextFields" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+        <ScrollView
+            android:id="@+id/sv_journal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9.0"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            tools:ignore="UselessParent">
+
+            <HorizontalScrollView
+                android:id="@+id/hsv_journal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TableLayout
+                    android:id="@+id/journal_table"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:collapseColumns="0,5,7,9,10"
+                    android:padding="1dp"
+                    android:background="@color/colorBlue_L"
+                    android:shrinkColumns="0"
+                    android:stretchColumns="*">
+
+                </TableLayout>
+
+            </HorizontalScrollView>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_weight="0.5"
+            tools:ignore="RtlCompat">
+
+            <TextView
+                android:id="@+id/journal_text_sum_dailyOne"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:text="일합계 :"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:lines="1"
+                android:background="@color/colorWhite"
+                tools:ignore="HardcodedText,NestedWeights,RtlCompat" />
+
+            <TextView
+                android:id="@+id/journal_text_sum_dailyOne_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="1dp"
+                android:layout_weight="1"
+                android:text="0"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:lines="1"
+                android:background="@color/colorWhite"
+                tools:ignore="HardcodedText,RtlCompat" />
+
+            <TextView
+                android:id="@+id/journal_text_sum_amount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="1dp"
+                android:layout_weight="1"
+                android:text="금액합계 :"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:lines="1"
+                android:background="@color/colorWhite"
+                tools:ignore="HardcodedText,RtlCompat" />
+
+            <TextView
+                android:id="@+id/journal_text_sum_amount_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="3dp"
+                android:layout_weight="2"
+                android:text="0"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:lines="1"
+                android:background="@color/colorWhite"
+                tools:ignore="HardcodedText,RtlCompat" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--
+        <Spinner
+            android:id="@+id/journal_spinner_team"
+            android:layout_width="350dp"
+            android:layout_height="90px"
+            android:layout_gravity="center"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="3dp"
+            android:spinnerMode="dialog"
+            android:background="@drawable/spinner_spinner1"
+            tools:ignore="PxUsage" />
+
+        <Spinner
+            android:id="@+id/journal_spinner_site"
+            android:layout_width="350dp"
+            android:layout_height="90px"
+            android:layout_gravity="center"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="3dp"
+            android:spinnerMode="dialog"
+            android:background="@drawable/spinner_spinner1"
+            tools:ignore="PxUsage" />
+-->
+
+</LinearLayout>

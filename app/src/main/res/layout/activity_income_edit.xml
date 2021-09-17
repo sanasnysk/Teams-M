@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorLightBlue_L"
+    tools:context=".Incomes.IncomeEdit">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/main_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorLightBlue"
+        android:minHeight="?actionBarSize"
+        android:overScrollMode="ifContentScrolls"
+        android:theme="?attr/actionBarStyle">
+
+        <ImageButton
+            android:id="@+id/income_update_back_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:background="@color/colorLightBlue"
+            android:layout_marginStart="10dp"
+            android:padding="1dp"
+            android:src="@drawable/arrow_back_white"
+            tools:ignore="ContentDescription,RtlCompat,RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/txt_main_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="clip_vertical"
+            android:layout_weight="1"
+            android:text="수입 수정/삭제"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            tools:ignore="HardcodedText,RtlCompat,SpUsage" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="6"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/edit_background"
+        tools:ignore="RtlCompat,UselessLeaf,UselessParent">
+
+        <TextView
+            android:id="@+id/textview_main_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5.5"
+            android:layout_gravity="clip_vertical"
+            android:text="현장을 선택 하세요?"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:background="@color/white"
+            tools:ignore="HardcodedText,RtlCompat" />
+
+        <Button
+            android:id="@+id/button_main_run"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="0.5"
+            android:layout_marginStart="5dp"
+            android:layout_gravity="center_vertical"
+            android:text="선택"
+            android:background="@drawable/ic_arrow_down_01"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        tools:ignore="UselessLeaf">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="1dp"
+            android:layout_gravity="center"
+            tools:ignore="RtlCompat,UselessParent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:text="수입 ID"
+                android:textAlignment="center"
+                android:focusable="false"
+                android:padding="3dp"
+                android:textSize="18sp"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText,RtlCompat,TextFields"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:text="일  자"
+                android:textAlignment="center"
+                android:focusable="false"
+                android:padding="3dp"
+                android:textSize="18sp"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText,RtlCompat,TextFields"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:text="팀 이름"
+                android:textAlignment="center"
+                android:focusable="false"
+                android:padding="3dp"
+                android:textSize="18sp"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText,RtlCompat,TextFields"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:text="금  액"
+                android:textAlignment="center"
+                android:focusable="false"
+                android:padding="3dp"
+                android:textSize="18sp"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText,RtlCompat,TextFields"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:text="세  금"
+                android:textAlignment="center"
+                android:focusable="false"
+                android:padding="3dp"
+                android:textSize="18sp"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText,RtlCompat,TextFields"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:text="메  모"
+                android:textAlignment="center"
+                android:focusable="false"
+                android:padding="3dp"
+                android:textSize="18sp"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText,RtlCompat,TextFields"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:text="ROW ID"
+                android:textAlignment="center"
+                android:focusable="false"
+                android:padding="3dp"
+                android:textSize="18sp"
+                android:visibility="invisible"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText,RtlCompat,TextFields"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:text="팀 ID"
+                android:textAlignment="center"
+                android:focusable="false"
+                android:padding="3dp"
+                android:textSize="18sp"
+                android:visibility="invisible"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText,RtlCompat,TextFields"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="10dp"
+            tools:ignore="RtlCompat">
+
+            <EditText
+                android:id="@+id/income_update_edit_iid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:padding="3dp"
+                android:focusable="false"
+                android:hint="수입 ID"
+                tools:ignore="Autofill,RtlCompat,HardcodedText,TextFields"/>
+
+            <EditText
+                android:id="@+id/income_update_edit_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:inputType="textPersonName"
+                android:padding="3dp"
+                android:hint="수입(입금) 일자"
+                tools:ignore="Autofill,RtlCompat,HardcodedText,TextFields"/>
+
+            <EditText
+                android:id="@+id/income_update_edit_leader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:inputType="textPersonName"
+                android:enabled="true"
+                android:padding="3dp"
+                android:focusable="false"
+                android:hint="팀 이름"
+                tools:ignore="Autofill,RtlCompat,HardcodedText"/>
+
+            <EditText
+                android:id="@+id/income_update_edit_collect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:inputType="numberDecimal"
+                android:padding="3dp"
+                android:hint="수입/입금 금액"
+                tools:ignore="Autofill,RtlCompat,HardcodedText"/>
+
+            <EditText
+                android:id="@+id/income_update_edit_tax"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:inputType="numberDecimal"
+                android:enabled="true"
+                android:padding="3dp"
+                android:hint="세액 공제"
+                tools:ignore="Autofill,RtlCompat,HardcodedText"/>
+
+            <EditText
+                android:id="@+id/income_update_edit_memo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:inputType="textPersonName"
+                android:padding="3dp"
+                android:hint="수입 메모"
+                tools:ignore="Autofill,RtlCompat,HardcodedText"/>
+
+            <EditText
+                android:id="@+id/income_update_edit_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:inputType="textPersonName"
+                android:background="@drawable/edit_background"
+                android:visibility="invisible"
+                android:padding="3dp"
+                android:hint="ROW ID"
+                android:focusable="false"
+                android:importantForAutofill="no"
+                tools:ignore="HardcodedText,RtlCompat,TextFields" />
+
+            <EditText
+                android:id="@+id/income_update_edit_tid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_background"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:inputType="textPersonName"
+                android:padding="3dp"
+                android:hint="팀 ID"
+                android:focusable="false"
+                android:visibility="invisible"
+                tools:ignore="Autofill,RtlCompat,HardcodedText"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
