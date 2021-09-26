@@ -736,15 +736,15 @@ public class IncomeTable extends AppCompatActivity {
         Cursor curinc = incomeControler.sumDateSearch(stDate,enDate);
 
         if (curinc.getString(curinc.getColumnIndex("ione")) != null) {
-            float day = curinc.getFloat(1);
+            float day = curinc.getFloat(0);
             String one_format = formatDouble.format(day);
-            textView_day.setText(day + " 일 ");//--> oneDay
+            textView_day.setText(one_format + " 일 ");//--> oneDay
         }else {
             textView_day.setText("0 일");
         }
 
         if (curinc.getString(curinc.getColumnIndex("iamount")) != null){
-            int amounts = curinc.getInt(0);
+            int amounts = curinc.getInt(1);
             String amt_format = formatPay.format(amounts);
             textView_amount.setText(amt_format + " 원 ");//--> amount
         }else {
@@ -785,9 +785,10 @@ public class IncomeTable extends AppCompatActivity {
         }
 
         if (curinc.getString(curinc.getColumnIndex("balance_day")) != null){
-
-            String daybal = curinc.getString(curinc.getColumnIndex("balance_day"));
-            textView_BalanceDay.setText(daybal + " 일 ");//--> day balance
+            float bday = curinc.getFloat(5);
+            String bday_format = formatDouble.format(bday);
+            //String daybal = curinc.getString(curinc.getColumnIndex("balance_day"));
+            textView_BalanceDay.setText(bday_format + " 일 ");//--> day balance
         }else {
             textView_BalanceDay.setText("0 일 ");//--> day balance
         }
