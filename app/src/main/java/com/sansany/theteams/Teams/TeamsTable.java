@@ -470,14 +470,6 @@ public class TeamsTable extends AppCompatActivity {
     {
         switch (item.getItemId())
         {
-            case R.id.team_add_option:
-                Toast.makeText(getApplicationContext(),
-                        "팀 등록 추가하기로 이동합니다.", Toast.LENGTH_SHORT).show();
-                Intent intent_teamAdd = new Intent( getApplicationContext(), TeamsAdd.class );
-                startActivity( intent_teamAdd );
-                finish();
-                return true;
-
             case R.id.team_newimage_option:
                 editText_Search.setText("");
                 return true;

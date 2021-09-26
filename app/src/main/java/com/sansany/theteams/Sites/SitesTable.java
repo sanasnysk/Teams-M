@@ -605,14 +605,6 @@ public class SitesTable extends AppCompatActivity {
                 finish();
                 return true;
 
-            case R.id.site_add_option:
-                Toast.makeText(getApplicationContext(),
-                        "현장 등록으로 이동 합니다.", Toast.LENGTH_SHORT).show();
-                Intent intent_site_add = new Intent( getApplicationContext(), SitesAdd.class );
-                startActivity( intent_site_add );
-                finish();
-                return true;
-
             case R.id.site_newimage_option:
                 editText_Search.setText("");
                 return true;

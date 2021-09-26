@@ -350,38 +350,6 @@ public class IncomeEdit extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected( MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.income_update_edit_option:
-                Toast.makeText(getApplicationContext(),
-                        "수입/경비 내용을 수정 합니다.", Toast.LENGTH_SHORT).show();
-                if (edit_leader.length() == 0){
-                    Toast.makeText( IncomeEdit.this, "not Data Title",
-                            Toast.LENGTH_LONG ).show();
-                    edit_leader.requestFocus();
-                }else if (edit_collect.length() == 0){
-                    Toast.makeText( IncomeEdit.this, "not Data Leader",
-                            Toast.LENGTH_SHORT ).show();
-                    edit_collect.requestFocus();
-                }else {
-                    //Update Data
-                    String id = edit_id.getText().toString();
-                    String iid = edit_iid.getText().toString();
-                    String date = edit_date.getText().toString();
-                    String leader = edit_leader.getText().toString();
-                    String collect = edit_collect.getText().toString().replace( ",", "" );
-                    String tax = edit_tax.getText().toString().replace( ",", "" );
-                    String memo = edit_memo.getText().toString();
-                    String tid = edit_tid.getText().toString();
-                    //db open
-                    incomeControler.open();
-                    incomeControler.updateIncome( id, iid, date, leader, collect, tax, memo, tid );
-
-                    Intent intentIncomeupdate = new Intent( getApplicationContext(), IncomeList.class );
-                    startActivity( intentIncomeupdate );
-                    finish();
-                    incomeControler.close();
-                }
-                return true;
-
             case R.id.income_edit_image_option:
                 if (edit_leader.length() == 0){
                     Toast.makeText( IncomeEdit.this, "not Data Title",
@@ -428,27 +396,6 @@ public class IncomeEdit extends AppCompatActivity {
                 }else {
                     Toast.makeText( IncomeEdit.this,
                             "Not Deleted" + iid, Toast.LENGTH_LONG ).show();
-                }
-                return true;
-
-            case R.id.income_update_delete_option:
-                Toast.makeText(getApplicationContext(),
-                        "수입/경비 내용을 삭제 합니다.", Toast.LENGTH_SHORT).show();
-                String did = edit_id.getText().toString();
-                String diid = edit_iid.getText().toString();
-                if (edit_id.length() > 0){
-                    incomeControler.open();
-                    incomeControler.deleteIncome(did);
-
-                    Toast.makeText( IncomeEdit.this,
-                            "Deleted" + diid, Toast.LENGTH_LONG ).show();
-                    Intent updateintent = new Intent( getApplicationContext(), IncomeList.class );
-                    startActivity( updateintent );
-
-                    finish();
-                }else {
-                    Toast.makeText( IncomeEdit.this,
-                            "Not Deleted" + diid, Toast.LENGTH_LONG ).show();
                 }
                 return true;
 

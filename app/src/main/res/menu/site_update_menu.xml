@@ -7,13 +7,13 @@
         android:id="@+id/site_update_option"
         android:title="수정하기"
         android:icon="@drawable/ic_update_white"
-        app:showAsAction="collapseActionView"
+        app:showAsAction="never"
         tools:ignore="HardcodedText" />
     <item
         android:id="@+id/site_delete_option"
         android:title="삭제하기"
         android:icon="@drawable/ic_delete_forever_white"
-        app:showAsAction="collapseActionView"
+        app:showAsAction="never"
         tools:ignore="HardcodedText" />
     <item
         android:id="@+id/site_update_close_option"

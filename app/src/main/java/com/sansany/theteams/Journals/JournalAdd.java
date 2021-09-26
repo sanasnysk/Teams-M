@@ -441,37 +441,6 @@ public class JournalAdd extends AppCompatActivity {
                 }
                 return true;
 
-            case R.id.journal_add_savetext_option:
-                if (editText_date.length() == 0 || editText_Site.length() == 0) {
-                    Toast.makeText( JournalAdd.this,
-                            "날짜와 이름을 입력하세요?", Toast.LENGTH_LONG ).show();
-                } else if (editText_oneday.length() == 0) {
-                    Toast.makeText( JournalAdd.this,
-                            "일량을 입력하세요?", Toast.LENGTH_SHORT ).show();
-                } else {
-                    String jid = editText_jId.getText().toString();
-                    String date = editText_date.getText().toString();
-                    String site = editText_Site.getText().toString();
-                    String day = editText_oneday.getText().toString();
-                    String leader = editText_Leader.getText().toString();
-                    String memo = editText_Memo.getText().toString();
-                    String spay = editText_spay.getText().toString().replace(",","");
-                    String jamount = editText_jamount.getText().toString().replace(",","");
-                    String sid = editText_sid.getText().toString();
-                    String tid = editText_tid.getText().toString();
-
-                    journalControler.open();
-                    journalControler.insertJournal( jid,date,site,day,leader,memo,spay,jamount,sid,tid );
-
-                    Toast.makeText(getApplicationContext(),
-                            "일지 내용을 저장 했습니다.", Toast.LENGTH_SHORT).show();
-
-                    Intent inSavejournal = new Intent( getApplicationContext(), JournalList.class );
-                    startActivity( inSavejournal );
-                    finish();
-                }
-                return true;
-
             case R.id.journal_add_close_option :
                 Toast.makeText(getApplicationContext(),
                         "일지 쓰기를 종료합니다.", Toast.LENGTH_SHORT).show();

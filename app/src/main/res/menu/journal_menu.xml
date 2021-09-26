@@ -19,11 +19,6 @@
         tools:ignore="HardcodedText" />
 
     <item
-        android:id="@+id/journal_add_option"
-        android:title="일지쓰기"
-        tools:ignore="HardcodedText" />
-
-    <item
         android:id="@+id/journal_close_option"
         android:title="리스트 닫기"
         tools:ignore="HardcodedText" />

@@ -4,22 +4,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/income_update_edit_option"
-        android:title="수정하기"
-        app:showAsAction="never"
-        tools:ignore="HardcodedText" />
-
-    <item
         android:id="@+id/income_edit_image_option"
         android:title="수정하기"
         android:icon="@drawable/ic_update_white"
         app:showAsAction="ifRoom"
-        tools:ignore="HardcodedText" />
-
-    <item
-        android:id="@+id/income_update_delete_option"
-        android:title="삭제하기"
-        app:showAsAction="never"
         tools:ignore="HardcodedText" />
 
     <item

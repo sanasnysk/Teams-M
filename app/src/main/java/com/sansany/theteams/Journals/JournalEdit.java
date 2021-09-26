@@ -425,68 +425,6 @@ public class JournalEdit extends AppCompatActivity {
                 }
                 return true;
 
-            case R.id.journal_update_edit_option:
-                Toast.makeText(getApplicationContext(),
-                        "일지 내용을 수정 합니다.", Toast.LENGTH_SHORT).show();
-                if (editText_Site.length() == 0){
-                    Toast.makeText( JournalEdit.this, "수정할 내용이 없습니다.",
-                            Toast.LENGTH_LONG ).show();
-                    editText_oneday.requestFocus();
-                }else if (editText_oneday.length() == 0){
-                    Toast.makeText( JournalEdit.this, "수정할 내용이 없습니다.",
-                            Toast.LENGTH_SHORT ).show();
-                    editText_oneday.requestFocus();
-                }else {
-                    //Update Data
-                    String iid = editText_id.getText().toString();
-                    String jid = editText_jid.getText().toString();
-                    String date = editText_date.getText().toString();
-                    String site = editText_Site.getText().toString();
-                    String oneday = editText_oneday.getText().toString();
-                    String leader = editText_leader.getText().toString();
-                    String memo = editText_Memo.getText().toString();
-                    String spay = editText_spay.getText().toString().replace(",","");
-                    String jamount = editText_jamount.getText().toString().replace(",","");
-                    String sid = editText_sid.getText().toString();
-                    String tid = editText_tid.getText().toString();
-
-                    //db open
-                    journalControler.open();
-                    journalControler.updateJournalData(iid, jid, date, site, oneday, leader, memo,spay,jamount, sid, tid);
-
-                    Toast.makeText( JournalEdit.this, site + "내용을 수정 햇습니다.",
-                            Toast.LENGTH_SHORT ).show();
-
-                    Intent updateIntent = new Intent( getApplicationContext(), JournalList.class );
-                    startActivity( updateIntent );
-                    finish();
-                }
-
-                return true;
-
-            case R.id.journal_update_delete_option:
-                Toast.makeText(getApplicationContext(),
-                        "일지 내용을 삭제 합니다.", Toast.LENGTH_SHORT).show();
-                String did = editText_id.getText().toString();
-                String djourid = editText_jid.getText().toString();
-                if (editText_id.length() > 0){
-                    journalControler.open();
-                    journalControler.deleteJournalData(did);
-
-                    Toast.makeText( JournalEdit.this,
-                            djourid + "를 삭제 했습니다." , Toast.LENGTH_LONG ).show();
-                    Intent updateintent = new Intent( getApplicationContext(), JournalList.class );
-                    startActivity( updateintent );
-
-                    finish();
-                }else {
-                    Toast.makeText( JournalEdit.this,
-                            djourid + "가 삭제 되지 않았습니다." , Toast.LENGTH_LONG ).show();
-
-                }
-
-                return true;
-
             case R.id.journal_update_close_option :
                 Toast.makeText(getApplicationContext(),
                         "일지 수정을 종료합니다.", Toast.LENGTH_SHORT).show();

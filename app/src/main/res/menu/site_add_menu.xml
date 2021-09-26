@@ -11,12 +11,6 @@
         tools:ignore="HardcodedText" />
 
     <item
-        android:id="@+id/site_add_savetext_option"
-        android:title="저장하기"
-        app:showAsAction="never"
-        tools:ignore="HardcodedText" />
-
-    <item
         android:id="@+id/site_add_close_option"
         android:title="현장 추가 닫기"
         app:showAsAction="never"

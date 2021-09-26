@@ -201,36 +201,6 @@ public class TeamsAdd extends AppCompatActivity {
 
                 return true;
 
-            case R.id.team_add_savetext_option:
-                if (editText_tid.length() == 0 || editText_leader.length() == 0) {
-                    Toast.makeText( TeamsAdd.this,
-                            "팀장/회사 이름을 입력하세요?", Toast.LENGTH_LONG ).show();
-                } else if (editText_phone.length() == 0) {
-                    Toast.makeText( TeamsAdd.this,
-                            "전화번호를 입력하세요?", Toast.LENGTH_SHORT ).show();
-                } else {
-
-                    String tid = editText_tid.getText().toString();
-                    String leader = editText_leader.getText().toString();
-                    String phone = editText_phone.getText().toString();
-                    String date = editText_date.getText().toString();
-                    String memo = editText_memo.getText().toString();
-
-                    teamsControler.open();
-                    teamsControler.insertTeam( tid, leader, phone, date, memo );
-
-                    Toast.makeText( getApplicationContext(),
-                            "입력한 데이터를 저장 했습니다.", Toast.LENGTH_SHORT ).show();
-
-                    Intent intent_Save = new Intent( getApplicationContext(), TeamsList.class );
-                    startActivity( intent_Save );
-
-                    finish();
-                }
-
-                return true;
-
-
             case R.id.team_add_close_option:
                 Intent intent_close = new Intent(getApplicationContext(), TeamsList.class);
                 startActivity(intent_close);

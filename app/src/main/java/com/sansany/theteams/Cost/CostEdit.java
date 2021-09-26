@@ -389,32 +389,6 @@ public class CostEdit extends AppCompatActivity {
                             "Not Deleted" + cid, Toast.LENGTH_LONG ).show();
                 }
                 return true;
-            case R.id.cost_up_edit_text_option:
-                if (edit_site.length() == 0 || edit_contents.length() == 0){
-                    Toast.makeText( CostEdit.this,
-                            "현장 또는 수입금액을 입력 하세요?", Toast.LENGTH_SHORT ).show();
-                }else {
-                    String cId = edit_cid.getText().toString();
-                    String cDate = edit_date.getText().toString();
-                    String cSite = edit_site.getText().toString();
-                    String contents = edit_contents.getText().toString();
-                    String cAmount = edit_amount.getText().toString().replace( ",", "" );
-                    String cMemo = edit_memo.getText().toString();
-                    String id = edit_id.getText().toString();
-                    String sid = edit_sid.getText().toString();
-
-                    costControler.open();
-                    costControler.updateCost(id, cId, cDate, cSite, contents, cAmount, cMemo, sid );
-
-                    Toast.makeText(getApplicationContext(),
-                            "수입/경비 내용을  수정 했습니다.", Toast.LENGTH_SHORT).show();
-
-                    Intent saveincomeintent = new Intent( getApplicationContext(), CostList.class );
-                    startActivity( saveincomeintent );
-
-                    finish();
-                }
-                return true;
 
             case R.id.cost_add_close_option:
                 Toast.makeText(getApplicationContext(),

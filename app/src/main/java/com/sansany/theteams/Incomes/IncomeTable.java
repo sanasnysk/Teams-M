@@ -1221,14 +1221,6 @@ public class IncomeTable extends AppCompatActivity {
 
                 return true;
 
-            case R.id.income_table_addText_option:
-                Toast.makeText(getApplicationContext(),
-                        "일지쓰기로 이동 합니다.", Toast.LENGTH_SHORT).show();
-                Intent intent_incomeAddText = new Intent(getApplicationContext(), IncomeAdd.class);
-                startActivity(intent_incomeAddText);
-                finish();
-                return true;
-
             case R.id.income_table_close_option:
                 Toast.makeText(getApplicationContext(),
                         "일지 리스트를 닫습니다.", Toast.LENGTH_SHORT).show();

@@ -385,32 +385,6 @@ public class IncomeAdd extends AppCompatActivity {
 
                 return true;
 
-            case R.id.income_add_saveText_option:
-                if (edit_leader.length() == 0 || edit_collect.length() == 0){
-                    Toast.makeText( IncomeAdd.this,
-                            "팀장/회사 또는 수입금액을 입력 하세요?", Toast.LENGTH_SHORT ).show();
-                }else {
-                    String incId = edit_iid.getText().toString();
-                    String incDate = edit_date.getText().toString();
-                    String incLeader = edit_leader.getText().toString();
-                    String incCollect = edit_collect.getText().toString().replace( ",", "" );
-                    String incTax = edit_tax.getText().toString().replace( ",", "" );
-                    String incTid = edit_tid.getText().toString();
-                    String incMemo = edit_memo.getText().toString();
-
-                    incomeControler.open();
-                    incomeControler.insertIncome( incId, incDate, incLeader, incCollect, incTax, incMemo, incTid );
-
-                    Toast.makeText(getApplicationContext(),
-                            "수입/경비 내용을  추가 했습니다.", Toast.LENGTH_SHORT).show();
-
-                    Intent saveincomeintent = new Intent( getApplicationContext(), IncomeList.class );
-                    startActivity( saveincomeintent );
-
-                    finish();
-                }
-                return true;
-
             case R.id.income_add_close_option :
                 Toast.makeText(getApplicationContext(),
                         "수입/경비 추가 끝내기", Toast.LENGTH_SHORT).show();

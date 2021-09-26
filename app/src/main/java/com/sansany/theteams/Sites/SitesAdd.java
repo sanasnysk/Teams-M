@@ -366,38 +366,6 @@ public class SitesAdd extends AppCompatActivity {
 
                 return true;
 
-            case R.id.site_add_savetext_option:
-                if (editText_name.length() == 0 || editText_leader.length() == 0) {
-                    Toast.makeText( SitesAdd.this,
-                            "현장/팀장 이름을 입력하세요?", Toast.LENGTH_LONG ).show();
-                }
-                else if (editText_pay.length() == 0) {
-                    Toast.makeText( SitesAdd.this,
-                            "일당을 입력하세요?", Toast.LENGTH_SHORT ).show();
-                } else {
-                    String siteId = editText_sid.getText().toString();
-                    String name = editText_name.getText().toString();
-                    String leader = editText_leader.getText().toString();
-                    String pay = editText_pay.getText().toString().replace( ",", "" );
-                    String manager = editText_manager.getText().toString();
-                    String date = editText_date.getText().toString();
-                    String memo = editText_memo.getText().toString();
-                    String tid = editText_tid.getText().toString();
-
-                    sitesControler.open();
-                    sitesControler.insertSite( siteId, name, leader, pay, manager, date, memo,tid);
-
-                    Toast.makeText(getApplicationContext(),
-                            "새 현장을 추가 했습니다.", Toast.LENGTH_SHORT).show();
-
-                    Intent intent_save = new Intent( getApplicationContext(), SitesList.class );
-                    startActivity( intent_save );
-
-                    finish();
-                }
-
-                return true;
-
             case R.id.site_add_close_option:
                 Toast.makeText(getApplicationContext(),
                         "현장 추가를 닫습니다.", Toast.LENGTH_SHORT).show();

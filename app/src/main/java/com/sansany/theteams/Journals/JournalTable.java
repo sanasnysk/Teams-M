@@ -1496,14 +1496,6 @@ public class JournalTable extends AppCompatActivity {
     public boolean onOptionsItemSelected( MenuItem item) {
         switch (item.getItemId())
         {
-            case R.id.journal_add_option:
-                Toast.makeText(getApplicationContext(),
-                        "일지 쓰기로 이동 합니다.", Toast.LENGTH_SHORT).show();
-                Intent intent_journalAdd = new Intent( getApplicationContext(), JournalAdd.class );
-                startActivity( intent_journalAdd );
-                finish();
-                return true;
-
             case R.id.journal_addimage_option:
                 Toast.makeText(getApplicationContext(),
                         "일지쓰기로 이동 합니다.", Toast.LENGTH_SHORT).show();
