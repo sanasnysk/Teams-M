@@ -1,11 +1,5 @@
 package com.sansany.theteams.Incomes;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
@@ -19,11 +13,15 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.sansany.theteams.Contents.Incomes;
-import com.sansany.theteams.Contents.IncomesContents;
 import com.sansany.theteams.Contents.Journals;
-import com.sansany.theteams.Contents.JournalsContents;
-import com.sansany.theteams.Contents.SitesContents;
+import com.sansany.theteams.Controler.IncomeControler;
 import com.sansany.theteams.Controler.JournalControler;
 import com.sansany.theteams.Database.DatabaseTeams;
 import com.sansany.theteams.RecyclerAdapter.IncomeAdapter;
@@ -44,6 +42,7 @@ public class IncomeList extends AppCompatActivity {
     DatabaseTeams db;
     SQLiteDatabase sql;
     JournalControler journalControler;
+    IncomeControler incomeControler;
     private final int count = -1;
     RecyclerView.LayoutManager layoutManager;
 
@@ -64,6 +63,7 @@ public class IncomeList extends AppCompatActivity {
 
         db = new DatabaseTeams(this);
         journalControler = new JournalControler(this);
+        incomeControler = new IncomeControler(this);
         sql = db.getReadableDatabase();
 
         //ImageButton Back Click
@@ -90,28 +90,9 @@ public class IncomeList extends AppCompatActivity {
 
     @SuppressLint("NotifyDataSetChanged")
     private void getAllJournalRecyclerView(){
-        String rcvListQuery = "SELECT i." + IncomesContents.TEAM_LEADER +
-                " as ileader,js.amounts as iamount,sum(i." + IncomesContents.INCOME_COLLECT +
-                ") as icollect,sum(i." + IncomesContents.INCOME_TAX +
-                ") as itax,js.amounts-sum(" + IncomesContents.INCOME_COLLECT +
-                ")-sum(" + IncomesContents.INCOME_TAX +
-                ") as balance,ROUND((js.amounts-sum(" + IncomesContents.INCOME_COLLECT +
-                ")-sum(" + IncomesContents.INCOME_TAX +
-                "))/js.avgspay,1) as balance_day FROM " + IncomesContents.INCOME_TABLE +
-                " as i LEFT JOIN (SELECT j." + JournalsContents.TEAM_ID +
-                " as tid,total(j." + JournalsContents.JOURNAL_ONE +
-                ") as ones,sum(j." + JournalsContents.JOURNAL_AMOUNT +
-                ") as amounts,avg(j." + JournalsContents.SITE_PAY +
-                ") as avgspay FROM " + JournalsContents.JOURNAL_TABLE +
-                " as j LEFT JOIN " + SitesContents.SITE_TABLE +
-                " as s ON j." + JournalsContents.SITE_ID +
-                " = s." + SitesContents.SITE_SID +
-                " GROUP BY j." + JournalsContents.TEAM_ID +
-                ") as js ON i." + IncomesContents.TEAM_ID +
-                " = js.tid GROUP BY i." + IncomesContents.TEAM_ID +
-                " ORDER BY i." + IncomesContents.INCOME_ID +" DESC ";
+        incomeControler.open();
+        Cursor cursor = incomeControler.incomeRecyclerViewListData();
 
-        Cursor cursor = sql.rawQuery(rcvListQuery, null);
         incomeAdapter = new IncomeAdapter(this,cursor);
         rcv_journal.setAdapter(incomeAdapter);
         incomeAdapter.notifyDataSetChanged();

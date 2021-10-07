@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -55,17 +55,17 @@
                         android:id="@+id/income_team_name_txt"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:padding="2dp"
                         android:layout_margin="1dp"
-                        android:text="팀 이름"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:lines="1"
-                        android:maxLines="1"
-                        android:textAlignment="gravity"
+                        android:layout_weight="1"
                         android:background="@color/colorLightBlue_L"
                         android:gravity="center_horizontal"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:text="팀 이름"
+                        android:textAlignment="gravity"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
                         tools:ignore="HardcodedText,RtlCompat" />
 
                     <TextView
@@ -80,7 +80,7 @@
                         android:textSize="14sp"
                         android:lines="1"
                         android:maxLines="1"
-                        android:textAlignment="textStart"
+                        android:textAlignment="center"
                         android:background="@color/white"
                         android:gravity="center_horizontal"
                         tools:ignore="HardcodedText,RtlCompat" />
@@ -91,6 +91,40 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/income_team_day_txt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/colorLightBlue_L"
+                        android:gravity="center_horizontal"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:text="일수"
+                        android:textAlignment="gravity"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText,RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/income_team_days"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:padding="2dp"
+                        android:layout_margin="1dp"
+                        android:text="Days"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:textAlignment="textEnd"
+                        android:background="@color/white"
+                        android:gravity="center_horizontal"
+                        tools:ignore="HardcodedText,RtlCompat" />
 
                     <TextView
                         android:id="@+id/income_team_amount_txt"
@@ -113,7 +147,7 @@
                         android:id="@+id/income_team_amount"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="6"
+                        android:layout_weight="3.5"
                         android:padding="2dp"
                         android:layout_margin="1dp"
                         android:text="Team Amount"
@@ -121,7 +155,7 @@
                         android:textSize="14sp"
                         android:lines="1"
                         android:maxLines="1"
-                        android:textAlignment="textStart"
+                        android:textAlignment="textEnd"
                         android:background="@color/white"
                         android:gravity="center_horizontal"
                         tools:ignore="HardcodedText,RtlCompat" />
@@ -162,7 +196,7 @@
                         android:textSize="14sp"
                         android:lines="1"
                         android:maxLines="1"
-                        android:textAlignment="textStart"
+                        android:textAlignment="textEnd"
                         android:background="@color/white"
                         android:gravity="center_horizontal"
                         tools:ignore="HardcodedText,RtlCompat" />
@@ -196,7 +230,7 @@
                         android:textSize="14sp"
                         android:lines="1"
                         android:maxLines="1"
-                        android:textAlignment="textStart"
+                        android:textAlignment="textEnd"
                         android:background="@color/white"
                         android:gravity="center_horizontal"
                         tools:ignore="HardcodedText,RtlCompat" />
@@ -229,7 +263,7 @@
                         android:id="@+id/income_team_balance_day"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
+                        android:layout_weight="1.5"
                         android:padding="2dp"
                         android:layout_margin="1dp"
                         android:text="Balance Day"
@@ -237,7 +271,7 @@
                         android:textSize="14sp"
                         android:lines="1"
                         android:maxLines="1"
-                        android:textAlignment="textStart"
+                        android:textAlignment="textEnd"
                         android:background="@color/white"
                         android:gravity="center_horizontal"
                         tools:ignore="HardcodedText,RtlCompat" />
@@ -263,7 +297,7 @@
                         android:id="@+id/income_team_balance_amount"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="3"
+                        android:layout_weight="3.5"
                         android:padding="2dp"
                         android:layout_margin="1dp"
                         android:text="Balance Amount"
@@ -271,7 +305,7 @@
                         android:textSize="14sp"
                         android:lines="1"
                         android:maxLines="1"
-                        android:textAlignment="textStart"
+                        android:textAlignment="textEnd"
                         android:background="@color/white"
                         android:gravity="center_horizontal"
                         tools:ignore="HardcodedText,RtlCompat" />

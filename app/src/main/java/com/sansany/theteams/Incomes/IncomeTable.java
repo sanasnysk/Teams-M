@@ -73,6 +73,7 @@ public class IncomeTable extends AppCompatActivity {
         sitesControler = new SitesControler(this);
         incomeControler = new IncomeControler(this);
 
+
         //--- UI findViewById
         income_table = findViewById(R.id.income_table);
         text_title = findViewById(R.id.txt_income_table_toolbar);
@@ -107,8 +108,6 @@ public class IncomeTable extends AppCompatActivity {
             }
         });
 
-        DateTime();
-
         //------ Start Date OnClick Listener -------------------------------
         editText_StartDate.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -123,41 +122,7 @@ public class IncomeTable extends AppCompatActivity {
                 startDatePickerDialog();
             }
         });
-        //------ Start Date Text Change Listener -------------------------------
-        editText_StartDate.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void afterTextChanged(Editable s) {
-                journalControler.open();
-                Cursor cusIncomeAllSelect = journalControler.selectAllJournal();
-                int allCount = cusIncomeAllSelect.getCount();
-                if (allCount != 0) {
-                    income_table.removeAllViews();
-                    if (editText_search != null) {
-                        searchTeamDateLoad();
-                        sumSearchTeamDate();
-                    }else {
-                        searchTeamDateLoad();
-                        sumSearchTeamDate();
-                    }
-
-                } else {
-                    //Do nothing
-                }
-            }
-        });
-
-        //------ End Date OnClick Listener -------------------------------
         editText_EndDate.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -172,72 +137,11 @@ public class IncomeTable extends AppCompatActivity {
             }
         });
 
-        //------ End Date Text Change Listener -------------------------------
-        editText_EndDate.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        editText_StartDate.addTextChangedListener(textWatcher);
+        editText_EndDate.addTextChangedListener(textWatcher);
+        editText_search.addTextChangedListener(textWatcher);
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void afterTextChanged(Editable s) {
-                journalControler.open();
-                Cursor cusIncomeAllSelect = journalControler.selectAllJournal();
-                int allCount = cusIncomeAllSelect.getCount();
-
-                if (allCount != 0) {
-                    income_table.removeAllViews();
-                    if (editText_search != null) {
-                        searchTeamDateLoad();
-                        sumSearchTeamDate();
-                    }else {
-                        searchTeamDateLoad();
-                        sumSearchTeamDate();
-                    }
-                } else {
-                    //Do nothing
-                }
-
-            }
-        });
-
-        //Edie Text Search Changed
-        editText_search.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void afterTextChanged(Editable s) {
-                journalControler.open();
-                final Cursor cuLoad = journalControler.selectAllJournal();
-                final int rowcount = cuLoad.getCount();
-                if (rowcount != 0){
-                    income_table.removeAllViews();
-                    if (editText_search.getText().toString().equals("")) {
-                        searchDateLoad();
-                        sumSearchDate();
-                    }else {
-                        searchTeamDateLoad();
-                        sumSearchTeamDate();
-                    }
-                }else {
-                    //Noting
-                }
-            }
-        });
-
+        DateTime();
         getIntentResult();
 
     }
@@ -253,6 +157,25 @@ public class IncomeTable extends AppCompatActivity {
         }
 
     }
+
+    //--- addTextChangedListener TextWatcher
+    private final TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        }
+
+        @RequiresApi(api = Build.VERSION_CODES.N)
+        @Override
+        public void afterTextChanged(Editable editable) {
+            income_table.removeAllViews();
+            searchTeamDateLoad();
+            sumSearchTeamDate();
+        }
+    };
 
     //--- Income Table Site Search ---
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -491,7 +414,7 @@ public class IncomeTable extends AppCompatActivity {
 
     }
 
-    //------- Data Load Table ------ 현제사용안함 ----
+    //------- Data Load Table ------
     @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressLint("SetTextI18n")
     private void searchDateLoad() {
@@ -626,7 +549,7 @@ public class IncomeTable extends AppCompatActivity {
         String sDate = editText_StartDate.getText().toString();
         String eDate = editText_EndDate.getText().toString();
         incomeControler.open();
-        final Cursor cus = incomeControler.selectDateLoad(sDate,eDate);
+        final Cursor cus = incomeControler.selectDateLoad(sDate, eDate);
         final int rows = cus.getCount();
         final int clums = cus.getColumnCount();
 
@@ -726,48 +649,46 @@ public class IncomeTable extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressLint({"Recycle", "SetTextI18n"})
     private void sumSearchDate() {
-        SQLiteDatabase db = teamDB.getReadableDatabase();
-
         //-- search
         String stDate = editText_StartDate.getText().toString();
         String enDate = editText_EndDate.getText().toString();
 
         incomeControler.open();
-        Cursor curinc = incomeControler.sumDateSearch(stDate,enDate);
+        Cursor curinc = incomeControler.sumDateSearch(stDate, enDate);
 
         if (curinc.getString(curinc.getColumnIndex("ione")) != null) {
             float day = curinc.getFloat(0);
             String one_format = formatDouble.format(day);
             textView_day.setText(one_format + " 일 ");//--> oneDay
-        }else {
+        } else {
             textView_day.setText("0 일");
         }
 
-        if (curinc.getString(curinc.getColumnIndex("iamount")) != null){
+        if (curinc.getString(curinc.getColumnIndex("iamount")) != null) {
             int amounts = curinc.getInt(1);
             String amt_format = formatPay.format(amounts);
             textView_amount.setText(amt_format + " 원 ");//--> amount
-        }else {
+        } else {
             textView_amount.setText("0 원 ");//--> amount
         }
 
-        if (curinc.getString(curinc.getColumnIndex("icollect")) != null){
+        if (curinc.getString(curinc.getColumnIndex("icollect")) != null) {
             int collects = curinc.getInt(2);
             String col_format = formatPay.format(collects);
             textView_Collect.setText(col_format + " 원 ");//--> collect
-        }else {
+        } else {
             textView_Collect.setText("0 원");
         }
 
-        if (curinc.getString(curinc.getColumnIndex("itax")) != null){
+        if (curinc.getString(curinc.getColumnIndex("itax")) != null) {
             int taxs = curinc.getInt(3);
             String ta_format = formatPay.format(taxs);
             textView_Tax.setText(ta_format + " 원 ");//--> tax
-        }else {
+        } else {
             textView_Tax.setText("0 원");
         }
 
-        if (curinc.getString(curinc.getColumnIndex("balance")) != null){
+        if (curinc.getString(curinc.getColumnIndex("balance")) != null) {
             int balance = curinc.getInt(4);
             String bal_format = formatPay.format(balance);
             textView_balance.setText(bal_format + " 원 ");//--> balance
@@ -780,16 +701,15 @@ public class IncomeTable extends AppCompatActivity {
                 textView_balance.setTextColor(Color.parseColor("#075797"));
                 textView_balance.setText(bal_format + " 원 ");
             }
-        }else {
+        } else {
             textView_balance.setText("0 원");
         }
 
-        if (curinc.getString(curinc.getColumnIndex("balance_day")) != null){
+        if (curinc.getString(curinc.getColumnIndex("balance_day")) != null) {
             float bday = curinc.getFloat(5);
             String bday_format = formatDouble.format(bday);
-            //String daybal = curinc.getString(curinc.getColumnIndex("balance_day"));
             textView_BalanceDay.setText(bday_format + " 일 ");//--> day balance
-        }else {
+        } else {
             textView_BalanceDay.setText("0 일 ");//--> day balance
         }
 
@@ -937,7 +857,7 @@ public class IncomeTable extends AppCompatActivity {
         String eDate = editText_EndDate.getText().toString();
 
         incomeControler.open();
-        final Cursor cus = incomeControler.selectTeamDate(search,sDate, eDate);
+        final Cursor cus = incomeControler.selectTeamDate(search, sDate, eDate);
         final int rows = cus.getCount();
         final int clums = cus.getColumnCount();
 
@@ -1033,51 +953,49 @@ public class IncomeTable extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressLint({"Recycle", "SetTextI18n"})
     private void sumSearchTeamDate() {
-        SQLiteDatabase db = teamDB.getReadableDatabase();
-
         //-- search
         String search = editText_search.getText().toString();
         String stDate = editText_StartDate.getText().toString();
         String enDate = editText_EndDate.getText().toString();
 
         incomeControler.open();
-        final Cursor ctdsi = incomeControler.sumTeamDateSearch(search,stDate,enDate);
+        final Cursor ctdsi = incomeControler.sumTeamDateSearch(search, stDate, enDate);
 
         if (ctdsi.getString(ctdsi.getColumnIndex("ione")) == null) {
             textView_day.setText("0 일");
-        }else {
+        } else {
             String day = ctdsi.getString(ctdsi.getColumnIndex("ione"));
             //String one_format = formatDouble.format(day);
             textView_day.setText(day + " 일 ");//--> oneDay
         }
 
-        if (ctdsi.getString(ctdsi.getColumnIndex("iamount")) == null){
+        if (ctdsi.getString(ctdsi.getColumnIndex("iamount")) == null) {
             textView_amount.setText("0 원 ");//--> amount
-        }else {
+        } else {
             int amounts = ctdsi.getInt(1);
             String amt_format = formatPay.format(amounts);
             textView_amount.setText(amt_format + " 원 ");//--> amount
         }
 
-        if (ctdsi.getString(ctdsi.getColumnIndex("icollect")) == null){
+        if (ctdsi.getString(ctdsi.getColumnIndex("icollect")) == null) {
             textView_Collect.setText("0 원");
-        }else {
+        } else {
             int collects = ctdsi.getInt(3);
             String col_format = formatPay.format(collects);
             textView_Collect.setText(col_format + " 원 ");//--> collect
         }
 
-        if (ctdsi.getString(ctdsi.getColumnIndex("itax")) == null){
+        if (ctdsi.getString(ctdsi.getColumnIndex("itax")) == null) {
             textView_Tax.setText("0 원");
-        }else {
+        } else {
             int taxs = ctdsi.getInt(4);
             String ta_format = formatPay.format(taxs);
             textView_Tax.setText(ta_format + " 원 ");//--> tax
         }
 
-        if (ctdsi.getString(ctdsi.getColumnIndex("balance")) == null){
+        if (ctdsi.getString(ctdsi.getColumnIndex("balance")) == null) {
             textView_balance.setText("0 원");
-        }else {
+        } else {
             int balance = ctdsi.getInt(5);
             String bal_format = formatPay.format(balance);
             textView_balance.setText(bal_format + " 원 ");//--> balance
@@ -1092,9 +1010,9 @@ public class IncomeTable extends AppCompatActivity {
             }
         }
 
-        if (ctdsi.getString(ctdsi.getColumnIndex("balance_day")) == null){
+        if (ctdsi.getString(ctdsi.getColumnIndex("balance_day")) == null) {
             textView_BalanceDay.setText("0 일 ");//--> day balance
-        }else {
+        } else {
             String daybal = ctdsi.getString(ctdsi.getColumnIndex("balance_day"));
             textView_BalanceDay.setText(daybal + " 일 ");//--> day balance
         }
@@ -1217,8 +1135,14 @@ public class IncomeTable extends AppCompatActivity {
                 return true;
 
             case R.id.income_table_newImage_option:
+                textView_day.setText("");
+                textView_amount.setText("");
+                textView_balance.setText("");
+                textView_Tax.setText("");
+                textView_Collect.setText("");
+                textView_BalanceDay.setText("");
+
                 DateTime();
-                editText_search.setText("");
 
                 return true;
 

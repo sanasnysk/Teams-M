@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/AndroidStudio_412/Teams M/app/src/main/res/layout/activity_income_list.xml" value="0.33" />
+        <entry key="..\:/AndroidStudioProjects/AndroidStudio_412/Teams M/app/src/main/res/layout/activity_income_table.xml" value="0.17864583333333334" />
+        <entry key="..\:/AndroidStudioProjects/AndroidStudio_412/Teams M/app/src/main/res/layout/activity_journal_table.xml" value="0.17864583333333334" />
         <entry key="..\:/AndroidStudioProjects/AndroidStudio_412/Teams M/app/src/main/res/layout/activity_sites_edit.xml" value="0.1634963768115942" />
+        <entry key="..\:/AndroidStudioProjects/AndroidStudio_412/Teams M/app/src/main/res/layout/income_list_item.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/AndroidStudio_412/Teams M/app/src/main/res/menu/cost_add_menu.xml" value="0.17864583333333334" />
         <entry key="..\:/AndroidStudioProjects/AndroidStudio_412/Teams M/app/src/main/res/menu/cost_edit_menu.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/AndroidStudio_412/Teams M/app/src/main/res/menu/cost_list_menu.xml" value="0.17864583333333334" />

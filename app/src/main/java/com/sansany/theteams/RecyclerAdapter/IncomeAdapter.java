@@ -52,12 +52,20 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder
         String leader = cursor_m.getString(cursor_m.getColumnIndex("ileader"));
         holder.team_leader.setText(leader);
 
+        if (cursor_m.getString(cursor_m.getColumnIndex("iones")) != null) {
+            String days = cursor_m.getString(cursor_m.getColumnIndex("iones"));
+            holder.team_days.setText(days + " 일");
+        }else {
+            holder.team_days.setText("0 일");
+        }
 
         if (cursor_m.getString(cursor_m.getColumnIndex("iamount")) != null) {
             String amount = cursor_m.getString(cursor_m.getColumnIndex("iamount"));
             int famount = Integer.parseInt(amount);
             String amount_format = formatPay.format(famount);
             holder.team_amount.setText(amount_format + " 원");
+        }else {
+            holder.team_amount.setText("0 원");
         }
 
         if (cursor_m.getString(cursor_m.getColumnIndex("icollect")) != null) {
@@ -66,7 +74,7 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder
             String collect_format = formatPay.format(fcollect);
             holder.team_collect.setText(collect_format + " 원");
         }else {
-            holder.team_collect.setText("0");
+            holder.team_collect.setText("0 원");
         }
 
         if (cursor_m.getString(cursor_m.getColumnIndex("itax")) != null) {
@@ -75,7 +83,7 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder
             String tax_format = formatPay.format(ftax);
             holder.team_tax.setText(tax_format + " 원");
         }else {
-            holder.team_tax.setText("0");
+            holder.team_tax.setText("0 원");
         }
 
         if (cursor_m.getString(cursor_m.getColumnIndex("balance")) != null) {
@@ -84,14 +92,14 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder
             String balance_format = formatPay.format(fbalance);
             holder.team_balance_amount.setText(balance_format + " 원");
         }else {
-            holder.team_balance_amount.setText("0");
+            holder.team_balance_amount.setText("0 원");
         }
 
         if (cursor_m.getString(cursor_m.getColumnIndex("balance_day")) != null) {
             String balance_day = cursor_m.getString(cursor_m.getColumnIndex("balance_day"));
             holder.team_balance_day.setText(balance_day + " 일");
         }else {
-            holder.team_balance_day.setText("0");
+            holder.team_balance_day.setText("0 일");
         }
 
 //        String cost = cursor_m.getString(cursor_m.getColumnIndex("costs"));
@@ -142,6 +150,7 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
         TextView team_leader;
+        TextView team_days;
         TextView team_amount;
         TextView team_collect;
         TextView team_tax;
@@ -151,6 +160,7 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.team_leader = itemView.findViewById(R.id.income_team_name);
+            this.team_days = itemView.findViewById(R.id.income_team_days);
             this.team_amount = itemView.findViewById(R.id.income_team_amount);
             this.team_collect = itemView.findViewById(R.id.income_team_collect);
             this.team_tax = itemView.findViewById(R.id.income_team_tax);
