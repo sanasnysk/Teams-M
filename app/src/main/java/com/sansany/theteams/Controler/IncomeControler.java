@@ -189,8 +189,9 @@ public class IncomeControler {
                 " as j LEFT JOIN " + SitesContents.SITE_TABLE +
                 " as s ON j." + JournalsContents.SITE_ID +
                 " = s." + SitesContents.SITE_SID +
-                " GROUP BY j." + JournalsContents.TEAM_ID +
-                ") as js ON i." + IncomesContents.TEAM_ID +
+                " WHERE j." + JournalsContents.TEAM_LEADER +
+                " LIKE '%" + search + "%' AND j." + JournalsContents.JOURNAL_DATE +
+                " BETWEEN date('" + start + "') AND date('" + end + "')) as js ON i." + IncomesContents.TEAM_ID +
                 " = js.tid WHERE i." + IncomesContents.TEAM_LEADER +
                 " LIKE '%" + search + "%' AND i." + IncomesContents.INCOME_DATE +
                 " BETWEEN date('" + start + "') AND date('" + end + "') ";
@@ -269,7 +270,7 @@ public class IncomeControler {
                 " = js.tid WHERE i." + IncomesContents.INCOME_DATE +
                 " BETWEEN date('" + start + "') AND date('" + end + "')";
 
-        /*
+
         String sumSearchDateQuery = "SELECT total(j." + JournalsContents.JOURNAL_ONE +
                 ") as ione,sum(j." + JournalsContents.JOURNAL_AMOUNT +
                 ") as iamount,i.collects as icollect,i.taxs as itax,sum(j." + JournalsContents.JOURNAL_ONE +
@@ -280,16 +281,18 @@ public class IncomeControler {
                 " as tid,sum(" + IncomesContents.INCOME_COLLECT +
                 ") as collects,sum(" + IncomesContents.INCOME_TAX +
                 ") as taxs FROM " + IncomesContents.INCOME_TABLE +
-                " WHERE i." + IncomesContents.INCOME_DATE +
-                " BETWEEN date('" + start + "') AND date('" + end + "')" +
+                " WHERE " + IncomesContents.INCOME_DATE +
+                " >= date('" + start + "') AND " + IncomesContents.INCOME_DATE +
+                " <= date('" + end + "')" +
                 ") as i ON i.tid = j." + JournalsContents.TEAM_ID +
                 " WHERE j." + JournalsContents.JOURNAL_DATE +
-                " BETWEEN date('" + start + "') AND date('" + end + "')";
-        */
+                " >= date('" + start + "') AND j." + JournalsContents.JOURNAL_DATE +
+                " <= date('" + end + "')";
+
 
         //ione=0,iamount=1,icollect=2,itax=3,balance=4,balance_day=5
 
-        Cursor cusDate = sqLiteDB.rawQuery(sumDateSearchQuery, null);
+        Cursor cusDate = sqLiteDB.rawQuery(sumSearchDateQuery, null);
         if (cusDate != null) {
             int r = cusDate.getCount();
             for (int i = 0; i < r; i++) {
@@ -302,13 +305,14 @@ public class IncomeControler {
         return cusDate;
     }
 
-    public Cursor sumDateSearchJournal(String start, String end){
+    public Cursor sumDateSearchJournal(String start, String end, String search){
         sqLiteDB = teamDB.getReadableDatabase();
         String journalDatesum = "SELECT total(" + JournalsContents.JOURNAL_ONE +
                 ") as ione,sum(" + JournalsContents.JOURNAL_AMOUNT +
                 ") as iamount FROM " + JournalsContents.JOURNAL_TABLE +
                 " WHERE " + JournalsContents.JOURNAL_DATE +
-                " BETWEEN date('" + start +"') AND date('" + end + "')";
+                " BETWEEN date('" + start +"') AND date('" + end + "') AND " + JournalsContents.TEAM_LEADER +
+                " LIKE '%" + search + "%' ";
         Cursor curjd = sqLiteDB.rawQuery(journalDatesum,null);
         if (curjd != null) {
             int r = curjd.getCount();
@@ -323,15 +327,54 @@ public class IncomeControler {
         return curjd;
     }
 
-    public Cursor sumDateSearchIncome(String start, String end){
+    public Cursor sumDateSearchIncome(String start, String end,String search){
         sqLiteDB = teamDB.getReadableDatabase();
+        /*
         String incomeDatesum = "SELECT sum(" + IncomesContents.INCOME_COLLECT +
                 ") as icollect,sum(" + IncomesContents.INCOME_TAX +
                 ") as itax FROM " + IncomesContents.INCOME_TABLE +
                 " WHERE " + IncomesContents.INCOME_DATE +
-                " BETWEEN date('" + start + "') AND date('" + end + "')";
+                " BETWEEN date('" + start + "') AND date('" + end + "') AND " + IncomesContents.TEAM_LEADER +
+                " LIKE '%" + search + "%'";
 
-        Cursor curid = sqLiteDB.rawQuery(incomeDatesum,null);
+        String sumTeamDateSearchQuery = "SELECT sum(i." + IncomesContents.INCOME_COLLECT +
+                ") as icollect,sum(i." + IncomesContents.INCOME_TAX +
+                ") as itax,js.amounts-sum(" + IncomesContents.INCOME_COLLECT +
+                ")-sum(" + IncomesContents.INCOME_TAX +
+                ") as balance,ROUND((js.amounts-sum(" + IncomesContents.INCOME_COLLECT +
+                ")-sum(" + IncomesContents.INCOME_TAX +
+                "))/js.avgspay,1) as balance_day FROM " + IncomesContents.INCOME_TABLE +
+                " as i LEFT JOIN (SELECT " + JournalsContents.TEAM_ID +
+                " as tid,sum(" + JournalsContents.JOURNAL_AMOUNT +
+                ") as amounts,avg(" + JournalsContents.SITE_PAY +
+                ") as avgspay FROM " + JournalsContents.JOURNAL_TABLE +
+                " WHERE " + JournalsContents.TEAM_LEADER +
+                " LIKE '%" + search + "%' AND " + JournalsContents.JOURNAL_DATE +
+                " BETWEEN date('" + start + "') AND date('" + end + "')) as js ON i." + IncomesContents.TEAM_ID +
+                " = js.tid WHERE i." + IncomesContents.TEAM_LEADER +
+                " LIKE '%" + search + "%' AND i." + IncomesContents.INCOME_DATE +
+                " BETWEEN date('" + start + "') AND date('" + end + "') ";
+        */
+
+        String sumSearchDateQuery = "SELECT total(j." + JournalsContents.JOURNAL_ONE +
+                ") as ione,sum(j." + JournalsContents.JOURNAL_AMOUNT +
+                ") as iamount,i.collects as icollect,i.taxs as itax,sum(j." + JournalsContents.JOURNAL_AMOUNT +
+                ")-i.collects-i.taxs as balance,round((sum(j." + JournalsContents.JOURNAL_AMOUNT +
+                ")-i.collects-i.taxs)/avg(j." + JournalsContents.SITE_PAY +
+                "),1) as balance_day FROM " + JournalsContents.JOURNAL_TABLE +
+                " as j LEFT JOIN (SELECT " + IncomesContents.TEAM_ID +
+                " as tid,sum(" + IncomesContents.INCOME_COLLECT +
+                ") as collects,sum(" + IncomesContents.INCOME_TAX +
+                ") as taxs FROM " + IncomesContents.INCOME_TABLE +
+                " WHERE " + IncomesContents.TEAM_LEADER +
+                " LIKE '%" + search + "%' AND " + IncomesContents.INCOME_DATE +
+                " BETWEEN date('" + start + "') AND date('" + end + "')) as i ON i.tid = j." + JournalsContents.TEAM_ID +
+                " WHERE j." + JournalsContents.TEAM_LEADER +
+                " LIKE '%" + search + "%' AND j." + JournalsContents.JOURNAL_DATE +
+                " >= date('" + start + "') AND j." + JournalsContents.JOURNAL_DATE +
+                " <= date('" + end + "')";
+
+        Cursor curid = sqLiteDB.rawQuery(sumSearchDateQuery,null);
         if (curid != null) {
             int r = curid.getCount();
             for (int i = 0; i < r; i++) {
@@ -397,7 +440,7 @@ public class IncomeControler {
                 ") as icollect,sum(i." + IncomesContents.INCOME_TAX +
                 ") as itax,js.amounts-sum(" + IncomesContents.INCOME_COLLECT +
                 ")-sum(" + IncomesContents.INCOME_TAX +
-                ") as balance,ROUND((js.amounts-sum(" + IncomesContents.INCOME_COLLECT +
+                ") as balance,round((js.amounts-sum(" + IncomesContents.INCOME_COLLECT +
                 ")-sum(" + IncomesContents.INCOME_TAX +
                 "))/js.avgspay,1) as balance_day,js.ones as iones FROM " + IncomesContents.INCOME_TABLE +
                 " as i LEFT JOIN (SELECT j." + JournalsContents.TEAM_ID +

@@ -173,7 +173,9 @@ public class IncomeTable extends AppCompatActivity {
         public void afterTextChanged(Editable editable) {
             income_table.removeAllViews();
             searchTeamDateLoad();
-            sumSearchTeamDate();
+            //sumSearchTeamDate();
+            sumDateJournal();
+            sumDateIncome();
         }
     };
 
@@ -718,6 +720,90 @@ public class IncomeTable extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SetTextI18n")
+    private void sumDateJournal(){
+        //-- search
+        String stDate = editText_StartDate.getText().toString().trim();
+        String enDate = editText_EndDate.getText().toString().trim();
+        String search = editText_search.getText().toString().trim();
+
+        incomeControler.open();
+        Cursor curinc = incomeControler.sumDateSearchJournal(stDate, enDate,search);
+
+        if (curinc.getString(curinc.getColumnIndex("ione")) != null) {
+            float day = curinc.getFloat(0);
+            String one_format = formatDouble.format(day);
+            textView_day.setText(one_format + " 일 ");//--> oneDay
+        } else {
+            textView_day.setText("0 일");
+        }
+
+        if (curinc.getString(curinc.getColumnIndex("iamount")) != null) {
+            int amounts = curinc.getInt(1);
+            String amt_format = formatPay.format(amounts);
+            textView_amount.setText(amt_format + " 원 ");//--> amount
+        } else {
+            textView_amount.setText("0 원 ");//--> amount
+        }
+
+        incomeControler.close();
+        curinc.close();
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void sumDateIncome(){
+        //-- search
+        String stDate = editText_StartDate.getText().toString().trim();
+        String enDate = editText_EndDate.getText().toString().trim();
+        String search = editText_search.getText().toString().trim();
+
+        incomeControler.open();
+        Cursor curinc = incomeControler.sumDateSearchIncome(stDate, enDate,search);
+
+        if (curinc.getString(curinc.getColumnIndex("icollect")) != null) {
+            int collects = curinc.getInt(2);
+            String col_format = formatPay.format(collects);
+            textView_Collect.setText(col_format + " 원 ");//--> collect
+        } else {
+            textView_Collect.setText("0 원");
+        }
+
+        if (curinc.getString(curinc.getColumnIndex("itax")) != null) {
+            int taxs = curinc.getInt(3);
+            String ta_format = formatPay.format(taxs);
+            textView_Tax.setText(ta_format + " 원 ");//--> tax
+        } else {
+            textView_Tax.setText("0 원");
+        }
+
+        if (curinc.getString(curinc.getColumnIndex("balance")) != null) {
+            int balance = curinc.getInt(4);
+            String bal_format = formatPay.format(balance);
+            textView_balance.setText(bal_format + " 원 ");//--> balance
+            if (balance < 0) {
+                textView_balance.setTextColor(Color.parseColor("#BA0513"));
+                textView_balance.setText(bal_format.replace("-", "") + "원 ");
+
+            } else {
+                textView_balance.setTextColor(Color.parseColor("#075797"));
+                textView_balance.setText(bal_format + " 원 ");
+            }
+        } else {
+            textView_balance.setText("0 원");
+        }
+
+        if (curinc.getString(curinc.getColumnIndex("balance_day")) != null) {
+            float b_day = curinc.getFloat(5);
+            String bald_format = formatDouble.format(b_day);
+            textView_BalanceDay.setText(bald_format + " 일 ");//--> day balance
+        } else {
+            textView_BalanceDay.setText("0 일 ");//--> day balance
+        }
+
+        incomeControler.close();
+        curinc.close();
+    }
+
     //------ Date Selected Search -----------------------------------------------------
     @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressLint("SetTextI18n")
@@ -954,9 +1040,9 @@ public class IncomeTable extends AppCompatActivity {
     @SuppressLint({"Recycle", "SetTextI18n"})
     private void sumSearchTeamDate() {
         //-- search
-        String search = editText_search.getText().toString();
-        String stDate = editText_StartDate.getText().toString();
-        String enDate = editText_EndDate.getText().toString();
+        String search = editText_search.getText().toString().trim();
+        String stDate = editText_StartDate.getText().toString().trim();
+        String enDate = editText_EndDate.getText().toString().trim();
 
         incomeControler.open();
         final Cursor ctdsi = incomeControler.sumTeamDateSearch(search, stDate, enDate);
@@ -1135,6 +1221,7 @@ public class IncomeTable extends AppCompatActivity {
                 return true;
 
             case R.id.income_table_newImage_option:
+                editText_search.setText("");
                 textView_day.setText("");
                 textView_amount.setText("");
                 textView_balance.setText("");

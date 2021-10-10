@@ -11,54 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyTeams"
         tools:ignore="AllowBackup">
-        <activity
-            android:name="com.sansany.theteams.Cost.CostTable"
-            android:exported="true" />
-        <activity
-            android:name="com.sansany.theteams.Cost.CostList"
-            android:exported="true" />
-        <activity
-            android:name="com.sansany.theteams.Cost.CostEdit"
-            android:exported="true" />
-        <activity
-            android:name="com.sansany.theteams.Cost.CostAdd"
-            android:exported="true" />
-        <activity
-            android:name="com.sansany.theteams.Incomes.IncomeTable"
-            android:exported="true" />
-        <activity
-            android:name="com.sansany.theteams.Incomes.IncomeList"
-            android:exported="true" />
-        <activity
-            android:name="com.sansany.theteams.Incomes.IncomeEdit"
-            android:exported="true" />
-        <activity
-            android:name="com.sansany.theteams.Incomes.IncomeAdd"
-            android:exported="true" />
-        <activity
-            android:name="com.sansany.theteams.Journals.JournalTable"
-            android:exported="true" />
-        <activity
-            android:name="com.sansany.theteams.Journals.JournalList"
-            android:exported="true" />
-        <activity
-            android:name="com.sansany.theteams.Journals.JournalEdit"
-            android:exported="true" />
-        <activity
-            android:name="com.sansany.theteams.Journals.JournalAdd"
-            android:exported="true" />
-        <activity
-            android:name="com.sansany.theteams.Sites.SitesTable"
-            android:exported="true" />
-        <activity
-            android:name="com.sansany.theteams.Sites.SitesList"
-            android:exported="true" />
-        <activity
-            android:name="com.sansany.theteams.Sites.SitesEdit"
-            android:exported="true" />
-        <activity
-            android:name="com.sansany.theteams.Sites.SitesAdd"
-            android:exported="true" />
+
         <activity
             android:name="com.sansany.theteams.MainActivity"
             android:exported="true">
@@ -72,6 +25,22 @@
         <activity android:name="com.sansany.theteams.Teams.TeamsList" />
         <activity android:name="com.sansany.theteams.Teams.TeamsEdit" />
         <activity android:name="com.sansany.theteams.Teams.TeamsAdd" />
+        <activity android:name="com.sansany.theteams.Cost.CostTable" />
+        <activity android:name="com.sansany.theteams.Cost.CostList" />
+        <activity android:name="com.sansany.theteams.Cost.CostEdit" />
+        <activity android:name="com.sansany.theteams.Cost.CostAdd" />
+        <activity android:name="com.sansany.theteams.Incomes.IncomeTable" />
+        <activity android:name="com.sansany.theteams.Incomes.IncomeList" />
+        <activity android:name="com.sansany.theteams.Incomes.IncomeEdit" />
+        <activity android:name="com.sansany.theteams.Incomes.IncomeAdd" />
+        <activity android:name="com.sansany.theteams.Journals.JournalTable" />
+        <activity android:name="com.sansany.theteams.Journals.JournalList" />
+        <activity android:name="com.sansany.theteams.Journals.JournalEdit" />
+        <activity android:name="com.sansany.theteams.Journals.JournalAdd" />
+        <activity android:name="com.sansany.theteams.Sites.SitesTable" />
+        <activity android:name="com.sansany.theteams.Sites.SitesList" />
+        <activity android:name="com.sansany.theteams.Sites.SitesEdit" />
+        <activity android:name="com.sansany.theteams.Sites.SitesAdd" />
     </application>
 
 </manifest>

@@ -121,6 +121,42 @@ public class JournalEdit extends AppCompatActivity {
                 DatePickerDialog();
             }
         } );
+
+        editText_oneday.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+                if (editText_oneday == null) {
+                    //Do nothing
+                    float soneday = 0;
+                    int pay = Integer.parseInt( editText_spay.getText().toString() );
+                    int amount = (int) (soneday * pay);
+                    editText_jamount.setText( String.valueOf( amount ) );
+
+                } else if (editText_oneday.length() > 0) {
+
+                    float oneday = Float.parseFloat( s.toString() );
+
+                    String sPay = editText_spay.getText().toString().replace( ",", "" );
+                    int pay = Integer.parseInt(sPay);
+
+                    int amount = (int) (oneday * pay);
+                    editText_jamount.setText( String.valueOf( amount ) );
+                } else {
+                    //Do nothing
+                }
+
+
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         //--- 숫자 콤마
         TextWatcher watcher_spay = new TextWatcher() {
             @Override

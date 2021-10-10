@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/colorLightBlue_L"
+    android:orientation="vertical"
     tools:context=".Journals.JournalTable">
 
     <androidx.appcompat.widget.Toolbar
@@ -21,8 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:background="@color/colorLightBlue"
             android:layout_marginStart="10dp"
+            android:background="@color/colorLightBlue"
             android:padding="1dp"
             android:src="@drawable/arrow_back_white"
             tools:ignore="ContentDescription,RtlCompat,RtlHardcoded" />
@@ -31,16 +30,16 @@
             android:id="@+id/txt_journal_table_toolbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="clip_horizontal"
             android:layout_marginStart="1dp"
             android:layout_marginEnd="1dp"
-            android:layout_gravity="clip_horizontal"
             android:layout_weight="1"
+            android:lines="1"
+            android:maxLines="1"
             android:text="일지 테이블"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
-            android:lines="1"
-            android:maxLines="1"
             tools:ignore="HardcodedText,RtlCompat" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -63,11 +62,11 @@
             android:layout_weight="1"
             android:background="#FFFFFF"
             android:hint="Start Date"
+            android:importantForAutofill="no"
             android:padding="1dp"
             android:textAlignment="center"
             android:textSize="14sp"
-            tools:ignore="HardcodedText,RtlCompat,TextFields"
-            android:importantForAutofill="no" />
+            tools:ignore="HardcodedText,RtlCompat,TextFields" />
 
         <EditText
             android:id="@+id/journal_edit_endDate"
@@ -79,11 +78,11 @@
             android:layout_weight="1"
             android:background="#FFFFFF"
             android:hint="Start Date"
+            android:importantForAutofill="no"
             android:padding="1dp"
             android:textAlignment="center"
             android:textSize="14sp"
-            tools:ignore="HardcodedText,RtlCompat,TextFields"
-            android:importantForAutofill="no" />
+            tools:ignore="HardcodedText,RtlCompat,TextFields" />
 
     </LinearLayout>
 
@@ -114,19 +113,19 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="1dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
         android:orientation="vertical"
         android:weightSum="10">
 
         <ScrollView
             android:id="@+id/sv_journal"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="9.0"
+            android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
+            android:layout_weight="9.0"
             tools:ignore="UselessParent">
 
             <HorizontalScrollView
@@ -138,9 +137,9 @@
                     android:id="@+id/journal_table"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:collapseColumns="0,5,7,9,10"
-                    android:padding="1dp"
                     android:background="@color/colorBlue_L"
+                    android:collapseColumns="0,5,7,9,10"
+                    android:padding="2dp"
                     android:shrinkColumns="0"
                     android:stretchColumns="*">
 
@@ -152,15 +151,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="1dp"
-            android:layout_marginTop="1dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
+            android:layout_margin="2dp"
             android:layout_weight="0.5"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="2dp"
             tools:ignore="RtlCompat">
 
             <TextView
@@ -169,13 +166,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
+                android:background="@color/colorWhite"
+                android:lines="1"
                 android:text="일합계 :"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:lines="1"
-                android:background="@color/colorWhite"
                 tools:ignore="HardcodedText,NestedWeights,RtlCompat" />
 
             <TextView
@@ -185,13 +182,13 @@
                 android:layout_marginStart="1dp"
                 android:layout_marginEnd="1dp"
                 android:layout_weight="1"
+                android:background="@color/colorWhite"
+                android:lines="1"
                 android:text="0"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:lines="1"
-                android:background="@color/colorWhite"
                 tools:ignore="HardcodedText,RtlCompat" />
 
             <TextView
@@ -201,13 +198,13 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="1dp"
                 android:layout_weight="1"
+                android:background="@color/colorWhite"
+                android:lines="1"
                 android:text="금액합계 :"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:lines="1"
-                android:background="@color/colorWhite"
                 tools:ignore="HardcodedText,RtlCompat" />
 
             <TextView
@@ -217,13 +214,13 @@
                 android:layout_marginStart="1dp"
                 android:layout_marginEnd="3dp"
                 android:layout_weight="2"
+                android:background="@color/colorWhite"
+                android:lines="1"
                 android:text="0"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:lines="1"
-                android:background="@color/colorWhite"
                 tools:ignore="HardcodedText,RtlCompat" />
 
         </LinearLayout>

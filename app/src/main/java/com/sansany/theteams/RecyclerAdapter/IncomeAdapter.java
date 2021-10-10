@@ -46,6 +46,7 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         formatPay = new DecimalFormat("#,###");
+        formatday = new DecimalFormat("#,###.#");
         if (!cursor_m.moveToPosition(position))
             return;
 
@@ -54,7 +55,9 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder
 
         if (cursor_m.getString(cursor_m.getColumnIndex("iones")) != null) {
             String days = cursor_m.getString(cursor_m.getColumnIndex("iones"));
-            holder.team_days.setText(days + " 일");
+            float fday = Float.parseFloat(days);
+            String day_format = formatday.format(fday);
+            holder.team_days.setText(day_format + " 일");
         }else {
             holder.team_days.setText("0 일");
         }
@@ -79,7 +82,7 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder
 
         if (cursor_m.getString(cursor_m.getColumnIndex("itax")) != null) {
             String tax = cursor_m.getString(cursor_m.getColumnIndex("itax"));
-            float ftax = Float.parseFloat(tax);
+            int ftax = Integer.parseInt(tax);
             String tax_format = formatPay.format(ftax);
             holder.team_tax.setText(tax_format + " 원");
         }else {
@@ -88,7 +91,7 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder
 
         if (cursor_m.getString(cursor_m.getColumnIndex("balance")) != null) {
             String balance = cursor_m.getString(cursor_m.getColumnIndex("balance"));
-            float fbalance = Float.parseFloat(balance);
+            int fbalance = Integer.parseInt(balance);
             String balance_format = formatPay.format(fbalance);
             holder.team_balance_amount.setText(balance_format + " 원");
         }else {
@@ -97,7 +100,9 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder
 
         if (cursor_m.getString(cursor_m.getColumnIndex("balance_day")) != null) {
             String balance_day = cursor_m.getString(cursor_m.getColumnIndex("balance_day"));
-            holder.team_balance_day.setText(balance_day + " 일");
+            float fbalance_day = Float.parseFloat(balance_day);
+            String balanceday_format = formatday.format(fbalance_day);
+            holder.team_balance_day.setText(balanceday_format + " 일");
         }else {
             holder.team_balance_day.setText("0 일");
         }
