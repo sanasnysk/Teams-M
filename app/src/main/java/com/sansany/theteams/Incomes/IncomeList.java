@@ -21,8 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.sansany.theteams.Contents.Incomes;
 import com.sansany.theteams.Contents.Journals;
-import com.sansany.theteams.Controler.IncomeControler;
-import com.sansany.theteams.Controler.JournalControler;
+import com.sansany.theteams.Controller.IncomeController;
+import com.sansany.theteams.Controller.JournalController;
 import com.sansany.theteams.Database.DatabaseTeams;
 import com.sansany.theteams.RecyclerAdapter.IncomeAdapter;
 
@@ -41,8 +41,8 @@ public class IncomeList extends AppCompatActivity {
     private IncomeAdapter incomeAdapter;
     DatabaseTeams db;
     SQLiteDatabase sql;
-    JournalControler journalControler;
-    IncomeControler incomeControler;
+    JournalController journalController;
+    IncomeController incomeController;
     private final int count = -1;
     RecyclerView.LayoutManager layoutManager;
 
@@ -62,8 +62,8 @@ public class IncomeList extends AppCompatActivity {
         setSupportActionBar( toolbar );
 
         db = new DatabaseTeams(this);
-        journalControler = new JournalControler(this);
-        incomeControler = new IncomeControler(this);
+        journalController = new JournalController(this);
+        incomeController = new IncomeController(this);
         sql = db.getReadableDatabase();
 
         //ImageButton Back Click
@@ -90,8 +90,8 @@ public class IncomeList extends AppCompatActivity {
 
     @SuppressLint("NotifyDataSetChanged")
     private void getAllJournalRecyclerView(){
-        incomeControler.open();
-        Cursor cursor = incomeControler.incomeRecyclerViewListData();
+        incomeController.open();
+        Cursor cursor = incomeController.incomeRecyclerViewListData();
 
         incomeAdapter = new IncomeAdapter(this,cursor);
         rcv_journal.setAdapter(incomeAdapter);

@@ -23,7 +23,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.sansany.theteams.Controler.TeamsControler;
+import com.sansany.theteams.Controller.TeamsController;
 import com.sansany.theteams.Database.DatabaseTeams;
 
 import sansany.theteams.R;
@@ -37,7 +37,7 @@ public class TeamsAdd extends AppCompatActivity {
             editText_date,editText_memo;
     private Button button_save;
     private DatabaseTeams teamDB;
-    private TeamsControler teamsControler;
+    private TeamsController teamsController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,7 @@ public class TeamsAdd extends AppCompatActivity {
 
 
         teamDB = new DatabaseTeams( this );
-        teamsControler = new TeamsControler( this );
+        teamsController = new TeamsController( this );
 
         imageButton_back = findViewById( R.id.team_add_back_btn_toolbar );
 
@@ -102,8 +102,8 @@ public class TeamsAdd extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     public void teamAutoId() {
-        teamsControler.open();
-        final Cursor cus = teamsControler.teamAutoId();
+        teamsController.open();
+        final Cursor cus = teamsController.teamAutoId();
         final int rows = cus.getCount();
         String teamId = "t_";
         int idNo = 1;
@@ -115,7 +115,7 @@ public class TeamsAdd extends AppCompatActivity {
             int rid = idNo + r;
             editText_tid.setText(teamId + rid);
         }
-        teamsControler.close();
+        teamsController.close();
 
     }
 
@@ -187,8 +187,8 @@ public class TeamsAdd extends AppCompatActivity {
                     String date = editText_date.getText().toString();
                     String memo = editText_memo.getText().toString();
 
-                    teamsControler.open();
-                    teamsControler.insertTeam( tid, leader, phone, date, memo );
+                    teamsController.open();
+                    teamsController.insertTeam( tid, leader, phone, date, memo );
 
                     Toast.makeText( getApplicationContext(),
                             "입력한 데이터를 저장 했습니다.", Toast.LENGTH_SHORT ).show();

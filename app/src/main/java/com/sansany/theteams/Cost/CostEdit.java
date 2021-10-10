@@ -33,9 +33,9 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sansany.theteams.Controler.CostControler;
-import com.sansany.theteams.Controler.JournalControler;
-import com.sansany.theteams.Controler.SitesControler;
+import com.sansany.theteams.Controller.CostController;
+import com.sansany.theteams.Controller.JournalController;
+import com.sansany.theteams.Controller.SitesController;
 import com.sansany.theteams.Database.DatabaseTeams;
 
 import java.text.DecimalFormat;
@@ -54,9 +54,9 @@ public class CostEdit extends AppCompatActivity {
             edit_site, edit_contents, edit_amount,edit_memo,edit_id, edit_sid;
     private ImageButton imageButton_backbar;
     private DatabaseTeams teamDB;
-    private CostControler costControler;
-    private JournalControler journalControler;
-    private SitesControler sitesControler;
+    private CostController costController;
+    private JournalController journalController;
+    private SitesController sitesController;
     private final DecimalFormat decimalFormat = new DecimalFormat("#,###");
     private String result_collect, result_tax = "";
     //ListView Dialog
@@ -82,9 +82,9 @@ public class CostEdit extends AppCompatActivity {
 
         //--- UI findViewById
         teamDB = new DatabaseTeams( this );
-        costControler = new CostControler( this );
-        journalControler = new JournalControler( this );
-        sitesControler = new SitesControler(this);
+        costController = new CostController( this );
+        journalController = new JournalController( this );
+        sitesController = new SitesController(this);
 
         edit_cid = findViewById( R.id.cost_up_edit_cid );
         edit_date = findViewById( R.id.cost_up_edit_date );
@@ -201,11 +201,11 @@ public class CostEdit extends AppCompatActivity {
         //title.setText("현장을 선택 하세요?");
 
         // database handler
-        journalControler = new JournalControler(getApplicationContext());
-        journalControler.open();
+        journalController = new JournalController(getApplicationContext());
+        journalController.open();
 
         // Spinner Drop down elements
-        List<String> data = journalControler.getAllSpinnerSite();
+        List<String> data = journalController.getAllSpinnerSite();
 
         String[] item_data = data.toArray(new String[0]);
         int size = 0;
@@ -249,7 +249,7 @@ public class CostEdit extends AppCompatActivity {
 
                     // outer for loop
                     //---Data Edit Site_Name Team_Leader Daily_Pay 출력
-                    final Cursor cus = journalControler.siteSpinnerResult(site);
+                    final Cursor cus = journalController.siteSpinnerResult(site);
                     final int rows = cus.getCount();
                     final int clums = cus.getColumnCount();
 
@@ -357,8 +357,8 @@ public class CostEdit extends AppCompatActivity {
                     String id = edit_id.getText().toString();
                     String sid = edit_sid.getText().toString();
 
-                    costControler.open();
-                    costControler.updateCost(id, cId, cDate, cSite, contents, cAmount, cMemo, sid );
+                    costController.open();
+                    costController.updateCost(id, cId, cDate, cSite, contents, cAmount, cMemo, sid );
 
                     Toast.makeText(getApplicationContext(),
                             "수입/경비 내용을  수정", Toast.LENGTH_SHORT).show();
@@ -375,8 +375,8 @@ public class CostEdit extends AppCompatActivity {
                 String rid = edit_id.getText().toString();
                 String cid = edit_cid.getText().toString();
                 if (edit_id.length() > 0){
-                    costControler.open();
-                    costControler.deleteCost(rid);
+                    costController.open();
+                    costController.deleteCost(rid);
 
                     Toast.makeText( CostEdit.this,
                             "Deleted" + cid, Toast.LENGTH_LONG ).show();

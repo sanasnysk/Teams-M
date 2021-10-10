@@ -22,7 +22,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sansany.theteams.Controler.TeamsControler;
+import com.sansany.theteams.Controller.TeamsController;
 import com.sansany.theteams.Database.DatabaseTeams;
 
 import sansany.theteams.R;
@@ -34,7 +34,7 @@ public class TeamsTable extends AppCompatActivity {
     private ImageButton imageButton_Back;
     public TableLayout tableTeam;
     private DatabaseTeams teamDB;
-    private TeamsControler teamsControler;
+    private TeamsController teamsController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class TeamsTable extends AppCompatActivity {
         setSupportActionBar( toolbar );
 
         teamDB = new DatabaseTeams( this );
-        teamsControler = new TeamsControler( this );
+        teamsController = new TeamsController( this );
 
         txt_title = findViewById(R.id.txt_main_toolbar);
         tableTeam = findViewById( R.id.table_team );
@@ -207,8 +207,8 @@ public class TeamsTable extends AppCompatActivity {
 
         //Data Load
         String search = editText_Search.getText().toString();
-        teamsControler.open();
-        final Cursor cus = teamsControler.selectAllTeam();
+        teamsController.open();
+        final Cursor cus = teamsController.selectAllTeam();
         final int rows = cus.getCount();
         int columns = cus.getColumnCount();
 
@@ -278,7 +278,7 @@ public class TeamsTable extends AppCompatActivity {
             tableTeam.addView( row );
         }
 
-        teamsControler.close();
+        teamsController.close();
     }
 
     @SuppressLint("SetTextI18n")
@@ -384,8 +384,8 @@ public class TeamsTable extends AppCompatActivity {
 
         //Data Load
         String search = editText_Search.getText().toString();
-        teamsControler.open();
-        final Cursor cus = teamsControler.searchTeam(search);
+        teamsController.open();
+        final Cursor cus = teamsController.searchTeam(search);
         final int rows = cus.getCount();
         int columns = cus.getColumnCount();
 
@@ -454,7 +454,7 @@ public class TeamsTable extends AppCompatActivity {
             tableTeam.addView( row );
         }
 
-        teamsControler.close();
+        teamsController.close();
     }
 
     @Override

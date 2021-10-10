@@ -22,7 +22,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.sansany.theteams.Controler.SitesControler;
+import com.sansany.theteams.Controller.SitesController;
 import com.sansany.theteams.Database.DatabaseTeams;
 import java.text.DecimalFormat;
 
@@ -35,7 +35,7 @@ public class SitesTable extends AppCompatActivity {
     private ImageButton imageButton_Backbar;
     public TableLayout site_Table;
     private DatabaseTeams teamDB;
-    private SitesControler sitesControler;
+    private SitesController sitesController;
     private DecimalFormat formatDouble;
     private  DecimalFormat formatPay;
 
@@ -57,7 +57,7 @@ public class SitesTable extends AppCompatActivity {
         formatPay = new DecimalFormat("#,###");//금액 콤마 소숫점 없음
 
         teamDB = new DatabaseTeams( this );
-        sitesControler = new SitesControler( this );
+        sitesController = new SitesController( this );
 
         //-- findViewById --
         txt_title = findViewById(R.id.txt_site_toolbar);
@@ -263,8 +263,8 @@ public class SitesTable extends AppCompatActivity {
         site_Table.addView( row0 );
 
         //Data Load
-        sitesControler.open();
-        final Cursor cus = sitesControler.selectAllSite();
+        sitesController.open();
+        final Cursor cus = sitesController.selectAllSite();
         final int rows = cus.getCount();
         final int columns = cus.getColumnCount();
 
@@ -344,7 +344,7 @@ public class SitesTable extends AppCompatActivity {
             site_Table.addView( row );
         }
 
-        sitesControler.close();
+        sitesController.close();
     }
 
     @SuppressLint("SetTextI18n")
@@ -501,8 +501,8 @@ public class SitesTable extends AppCompatActivity {
 
         //Data Load
         String searchSite = editText_Search.getText().toString();
-        sitesControler.open();
-        final Cursor cus = sitesControler.searchSite( searchSite );
+        sitesController.open();
+        final Cursor cus = sitesController.searchSite( searchSite );
         final int rows = cus.getCount();
         final int columns = cus.getColumnCount();
 
@@ -582,7 +582,7 @@ public class SitesTable extends AppCompatActivity {
             site_Table.addView( row );
         }
 
-        sitesControler.close();
+        sitesController.close();
     }
 
     @Override

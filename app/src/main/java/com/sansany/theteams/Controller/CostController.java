@@ -1,4 +1,4 @@
-package com.sansany.theteams.Controler;
+package com.sansany.theteams.Controller;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -11,16 +11,16 @@ import com.sansany.theteams.Contents.JournalsContents;
 import com.sansany.theteams.Contents.SitesContents;
 import com.sansany.theteams.Database.DatabaseTeams;
 
-public class CostControler {
+public class CostController {
     private DatabaseTeams teamDB;
     private final Context context;
     private SQLiteDatabase sqLiteDB;
 
-    public CostControler(Context context) {
+    public CostController(Context context) {
         this.context = context;
     }
 
-    public CostControler open() throws SQLException {
+    public CostController open() throws SQLException {
         teamDB = new DatabaseTeams(context);
         sqLiteDB = teamDB.getWritableDatabase();
         return this;

@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.sansany.theteams.Contents.Incomes;
 import com.sansany.theteams.Contents.Journals;
-import com.sansany.theteams.Controler.JournalControler;
+import com.sansany.theteams.Controller.JournalController;
 import com.sansany.theteams.Database.DatabaseTeams;
 import com.sansany.theteams.RecyclerAdapter.JournalAdapter;
 
@@ -40,7 +40,7 @@ public class JournalList extends AppCompatActivity {
     private JournalAdapter journalAdapter;
     DatabaseTeams db;
     SQLiteDatabase sql;
-    JournalControler journalControler;
+    JournalController journalController;
     private final int count = -1;
     RecyclerView.LayoutManager layoutManager;
 
@@ -59,7 +59,7 @@ public class JournalList extends AppCompatActivity {
         setSupportActionBar( toolbar );
 
         db = new DatabaseTeams(this);
-        journalControler = new JournalControler(this);
+        journalController = new JournalController(this);
         sql = db.getReadableDatabase();
 
         //ImageButton Back Click
@@ -86,8 +86,8 @@ public class JournalList extends AppCompatActivity {
 
     @SuppressLint("NotifyDataSetChanged")
     private void getAllJournalRecyclerView(){
-        journalControler.open();
-        Cursor cursor = journalControler.recyclerViewData();
+        journalController.open();
+        Cursor cursor = journalController.recyclerViewData();
 
         journalAdapter = new JournalAdapter(this,cursor);
         rcv_journal.setAdapter(journalAdapter);

@@ -34,7 +34,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.sansany.theteams.Controler.SitesControler;
+import com.sansany.theteams.Controller.SitesController;
 import com.sansany.theteams.Database.DatabaseTeams;
 
 import java.text.DecimalFormat;
@@ -56,7 +56,7 @@ public class SitesAdd extends AppCompatActivity {
             editText_manager,editText_date,editText_memo,editText_tid;
     private Button button_save;
     private DatabaseTeams teamDB;
-    private SitesControler sitesControler;
+    private SitesController sitesController;
     private final DecimalFormat decimalFormat = new DecimalFormat("#,###");
     private String result="";
 
@@ -84,7 +84,7 @@ public class SitesAdd extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         teamDB = new DatabaseTeams(this );
-       sitesControler = new SitesControler(this);
+       sitesController = new SitesController(this);
 
        //findViewById
                 imageButton_backbar = findViewById( R.id.site_add_back_imgbtn_toolbar );
@@ -164,8 +164,8 @@ public class SitesAdd extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     public void siteAutoId() {
-        sitesControler.open();
-        final Cursor cus = sitesControler.siteAutoId();
+        sitesController.open();
+        final Cursor cus = sitesController.siteAutoId();
         final int rows = cus.getCount();
         String siteId = "s_";
         int idNo = 1;
@@ -192,11 +192,11 @@ public class SitesAdd extends AppCompatActivity {
         final AlertDialog dialog = builder.create();
 
         // database handler
-        sitesControler = new SitesControler( getApplicationContext() );
-        sitesControler.open();
+        sitesController = new SitesController( getApplicationContext() );
+        sitesController.open();
 
         // ListView Dropdown elements
-        List<String> data = sitesControler.getAllSpinnerTeam();
+        List<String> data = sitesController.getAllSpinnerTeam();
         //int[] image_data = {R.drawable.img_s0002};
         String[] item_data = data.toArray(new String[0]);
         int size = 0;
@@ -241,7 +241,7 @@ public class SitesAdd extends AppCompatActivity {
                     // outer for loop
                     //---Data Edit Site_Name Team_Leader Daily_Pay 출력
                     //sitesControler.open();
-                    final Cursor cus = sitesControler.teamSpinnerResult(leader);
+                    final Cursor cus = sitesController.teamSpinnerResult(leader);
                     final int rows = cus.getCount();
                     final int clums = cus.getColumnCount();
 
@@ -271,7 +271,7 @@ public class SitesAdd extends AppCompatActivity {
 
 
         });
-        sitesControler.close();
+        sitesController.close();
 
         dialog.setCancelable(true);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -352,8 +352,8 @@ public class SitesAdd extends AppCompatActivity {
                     String memo = editText_memo.getText().toString();
                     String tid = editText_tid.getText().toString();
 
-                    sitesControler.open();
-                    sitesControler.insertSite( siteId, name, leader, pay, manager, date, memo,tid );
+                    sitesController.open();
+                    sitesController.insertSite( siteId, name, leader, pay, manager, date, memo,tid );
 
                     Toast.makeText(getApplicationContext(),
                             "새 현장을 추가 했습니다.", Toast.LENGTH_SHORT).show();

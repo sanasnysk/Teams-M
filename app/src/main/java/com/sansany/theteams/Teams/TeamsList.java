@@ -18,7 +18,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.sansany.theteams.Contents.Teams;
-import com.sansany.theteams.Controler.TeamsControler;
+import com.sansany.theteams.Controller.TeamsController;
 import com.sansany.theteams.Database.DatabaseTeams;
 import com.sansany.theteams.RecyclerAdapter.TeamsAdapter;
 
@@ -34,7 +34,7 @@ public class TeamsList extends AppCompatActivity {
     private TeamsAdapter teamsAdapter;
     DatabaseTeams db;
     SQLiteDatabase sql;
-    TeamsControler teamsControler;
+    TeamsController teamsController;
     private final int count = -1;
     RecyclerView.LayoutManager layoutManager;
 
@@ -62,7 +62,7 @@ public class TeamsList extends AppCompatActivity {
         });
 
         db = new DatabaseTeams(this);
-        teamsControler = new TeamsControler(this);
+        teamsController = new TeamsController(this);
         sql = db.getReadableDatabase();
 
         mRecyclerView = findViewById(R.id.recycler_team);
@@ -80,8 +80,8 @@ public class TeamsList extends AppCompatActivity {
     @SuppressLint("NotifyDataSetChanged")
     private void getTeamRecyclerView(){
         list = new ArrayList<>();
-        teamsControler.open();
-        list = teamsControler.getList();
+        teamsController.open();
+        list = teamsController.getList();
 
         teamsAdapter = new TeamsAdapter(this.list);
         mRecyclerView.setAdapter(teamsAdapter);

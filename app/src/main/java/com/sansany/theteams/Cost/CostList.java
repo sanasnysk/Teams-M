@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.sansany.theteams.Contents.Incomes;
 import com.sansany.theteams.Contents.Journals;
-import com.sansany.theteams.Controler.CostControler;
+import com.sansany.theteams.Controller.CostController;
 import com.sansany.theteams.Database.DatabaseTeams;
 import com.sansany.theteams.RecyclerAdapter.CostAdapter;
 
@@ -40,7 +40,7 @@ public class CostList extends AppCompatActivity {
     private CostAdapter costAdapter;
     DatabaseTeams db;
     SQLiteDatabase sql;
-    CostControler costControler;
+    CostController costController;
     private final int count = -1;
     RecyclerView.LayoutManager layoutManager;
 
@@ -59,7 +59,7 @@ public class CostList extends AppCompatActivity {
         setSupportActionBar( toolbar );
 
         db = new DatabaseTeams(this);
-        costControler = new CostControler(this);
+        costController = new CostController(this);
         sql = db.getReadableDatabase();
 
         //ImageButton Back Click
@@ -85,13 +85,13 @@ public class CostList extends AppCompatActivity {
 
     @SuppressLint("NotifyDataSetChanged")
     private void getAllJournalRecyclerView(){
-        costControler.open();
+        costController.open();
 
-        Cursor cursor = costControler.recyclweViewData();
+        Cursor cursor = costController.recyclweViewData();
         costAdapter = new CostAdapter(this,cursor);
         rcv_cost.setAdapter(costAdapter);
         costAdapter.notifyDataSetChanged();
-        costControler.close();
+        costController.close();
     }
 
     @Override

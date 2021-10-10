@@ -32,7 +32,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.sansany.theteams.Controler.JournalControler;
+import com.sansany.theteams.Controller.JournalController;
 import com.sansany.theteams.Database.DatabaseTeams;
 
 import java.text.DecimalFormat;
@@ -53,7 +53,7 @@ public class JournalEdit extends AppCompatActivity {
     private String result_pay,result_amount = "";
     private final DecimalFormat decimalFormat = new DecimalFormat("#,###");
     private DatabaseTeams teamDB;
-    private JournalControler journalControler;
+    private JournalController journalController;
     //ListView Dialog
     private Button button_run;
     private TextView textview_result;
@@ -77,7 +77,7 @@ public class JournalEdit extends AppCompatActivity {
         setSupportActionBar( toolbar );
 
         teamDB = new DatabaseTeams( this );
-        journalControler = new JournalControler( this );
+        journalController = new JournalController( this );
 
         //--- EditText findViewById
         editText_jid = findViewById( R.id.journal_update_edit_jid );
@@ -251,11 +251,11 @@ public class JournalEdit extends AppCompatActivity {
         //title.setText("현장을 선택 하세요?");
 
         // database handler
-        journalControler = new JournalControler( getApplicationContext() );
-        journalControler.open();
+        journalController = new JournalController( getApplicationContext() );
+        journalController.open();
 
         // ListView Dropdown elements
-        List<String> data = journalControler.getAllSpinnerSite();
+        List<String> data = journalController.getAllSpinnerSite();
 
         String[] item_data = data.toArray(new String[0]);
         int size = 0;
@@ -301,8 +301,8 @@ public class JournalEdit extends AppCompatActivity {
 
                     // outer for loop
                     //---Data Edit Site_Name Team_Leader Daily_Pay 출력
-                    journalControler.open();
-                    final Cursor cus = journalControler.siteSpinnerResult( site );
+                    journalController.open();
+                    final Cursor cus = journalController.siteSpinnerResult( site );
                     final int rows = cus.getCount();
                     final int clums = cus.getColumnCount();
 
@@ -429,8 +429,8 @@ public class JournalEdit extends AppCompatActivity {
                     String tid = editText_tid.getText().toString();
 
                     //db open
-                    journalControler.open();
-                    journalControler.updateJournalData(id, jid, date, site, oneday, leader ,memo,spay,jamount, sid,tid  );
+                    journalController.open();
+                    journalController.updateJournalData(id, jid, date, site, oneday, leader ,memo,spay,jamount, sid,tid  );
 
                     Toast.makeText( JournalEdit.this, site + "내용을 수정 햇습니다.",
                             Toast.LENGTH_SHORT ).show();
@@ -445,8 +445,8 @@ public class JournalEdit extends AppCompatActivity {
                 String id = editText_id.getText().toString();
                 String jourid = editText_jid.getText().toString();
                 if (editText_id.length() > 0){
-                    journalControler.open();
-                    journalControler.deleteJournalData(id);
+                    journalController.open();
+                    journalController.deleteJournalData(id);
 
                     Toast.makeText( JournalEdit.this,
                             jourid + "를 삭제 했습니다." , Toast.LENGTH_LONG ).show();

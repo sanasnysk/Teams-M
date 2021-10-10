@@ -32,8 +32,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.sansany.theteams.Controler.IncomeControler;
-import com.sansany.theteams.Controler.SitesControler;
+import com.sansany.theteams.Controller.IncomeController;
+import com.sansany.theteams.Controller.SitesController;
 import com.sansany.theteams.Database.DatabaseTeams;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -52,8 +52,8 @@ public class IncomeEdit extends AppCompatActivity {
     private Button btn_update, btn_delete, btn_LoadData;
     private ImageButton imageButton_backbar;
     private DatabaseTeams teamDB;
-    private IncomeControler incomeControler;
-    private SitesControler sitesControler;
+    private IncomeController incomeController;
+    private SitesController sitesController;
     private final DecimalFormat decimalFormat = new DecimalFormat("#,###");
     private String result_collect, result_tax = "";
     //ListView Dialog
@@ -79,8 +79,8 @@ public class IncomeEdit extends AppCompatActivity {
 
         //--- UI findViewById
         teamDB = new DatabaseTeams( this );
-        incomeControler = new IncomeControler( this );
-        sitesControler = new SitesControler( this );
+        incomeController = new IncomeController( this );
+        sitesController = new SitesController( this );
 
         edit_id = findViewById( R.id.income_update_edit_id );
         edit_iid = findViewById( R.id.income_update_edit_iid );
@@ -208,11 +208,11 @@ public class IncomeEdit extends AppCompatActivity {
         //title.setText("현장을 선택 하세요?");
 
         // database handler
-        sitesControler = new SitesControler( getApplicationContext() );
-        sitesControler.open();
+        sitesController = new SitesController( getApplicationContext() );
+        sitesController.open();
 
         // Spinner Drop down elements
-        List<String> data = sitesControler.getAllSpinnerTeam();
+        List<String> data = sitesController.getAllSpinnerTeam();
 
         String[] item_data = data.toArray(new String[0]);
         int size = 0;
@@ -257,7 +257,7 @@ public class IncomeEdit extends AppCompatActivity {
                     // outer for loop
                     //---Data Edit Site_Name Team_Leader Daily_Pay 출력
                     //sitesControler.open();
-                    final Cursor cus = sitesControler.teamSpinnerResult(leader);
+                    final Cursor cus = sitesController.teamSpinnerResult(leader);
                     final int rows = cus.getCount();
                     final int clums = cus.getColumnCount();
 
@@ -370,13 +370,13 @@ public class IncomeEdit extends AppCompatActivity {
                     String memo = edit_memo.getText().toString();
                     String tid = edit_tid.getText().toString();
                     //db open
-                    incomeControler.open();
-                    incomeControler.updateIncome( id, iid, date, leader, collect, tax, memo, tid );
+                    incomeController.open();
+                    incomeController.updateIncome( id, iid, date, leader, collect, tax, memo, tid );
 
                     Intent intentIncomeupdate = new Intent( getApplicationContext(), IncomeList.class );
                     startActivity( intentIncomeupdate );
                     finish();
-                    incomeControler.close();
+                    incomeController.close();
                 }
                 return true;
 
@@ -384,8 +384,8 @@ public class IncomeEdit extends AppCompatActivity {
                 String id = edit_id.getText().toString();
                 String iid = edit_iid.getText().toString();
                 if (edit_id.length() > 0){
-                    incomeControler.open();
-                    incomeControler.deleteIncome(id);
+                    incomeController.open();
+                    incomeController.deleteIncome(id);
 
                     Toast.makeText( IncomeEdit.this,
                             "Deleted" + iid, Toast.LENGTH_LONG ).show();

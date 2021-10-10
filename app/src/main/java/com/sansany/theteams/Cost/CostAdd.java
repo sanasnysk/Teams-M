@@ -33,9 +33,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.sansany.theteams.Controler.CostControler;
-import com.sansany.theteams.Controler.JournalControler;
-import com.sansany.theteams.Controler.SitesControler;
+import com.sansany.theteams.Controller.CostController;
+import com.sansany.theteams.Controller.JournalController;
+import com.sansany.theteams.Controller.SitesController;
 import com.sansany.theteams.Database.DatabaseTeams;
 
 import java.text.DecimalFormat;
@@ -54,9 +54,9 @@ public class CostAdd extends AppCompatActivity {
             edit_site, edit_contents, edit_amount,edit_memo, edit_sid;
     private ImageButton imageButton_backbar;
     private DatabaseTeams teamDB;
-    private CostControler costControler;
-    private JournalControler journalControler;
-    private SitesControler sitesControler;
+    private CostController costController;
+    private JournalController journalController;
+    private SitesController sitesController;
     private final DecimalFormat decimalFormat = new DecimalFormat("#,###");
     private String result_collect, result_tax = "";
     //ListView Dialog
@@ -82,9 +82,9 @@ public class CostAdd extends AppCompatActivity {
 
         //--- UI findViewById
         teamDB = new DatabaseTeams( this );
-        costControler = new CostControler( this );
-        journalControler = new JournalControler( this );
-        sitesControler = new SitesControler(this);
+        costController = new CostController( this );
+        journalController = new JournalController( this );
+        sitesController = new SitesController(this);
 
         edit_cid = findViewById( R.id.cost_add_edit_cid );
         edit_date = findViewById( R.id.cost_add_edit_date );
@@ -177,11 +177,11 @@ public class CostAdd extends AppCompatActivity {
         //title.setText("현장을 선택 하세요?");
 
         // database handler
-        journalControler = new JournalControler(getApplicationContext());
-        journalControler.open();
+        journalController = new JournalController(getApplicationContext());
+        journalController.open();
 
         // Spinner Drop down elements
-        List<String> data = journalControler.getAllSpinnerSite();
+        List<String> data = journalController.getAllSpinnerSite();
 
         String[] item_data = data.toArray(new String[0]);
         int size = 0;
@@ -225,7 +225,7 @@ public class CostAdd extends AppCompatActivity {
 
                     // outer for loop
                     //---Data Edit Site_Name Team_Leader Daily_Pay 출력
-                    final Cursor cus = journalControler.siteSpinnerResult(site);
+                    final Cursor cus = journalController.siteSpinnerResult(site);
                     final int rows = cus.getCount();
                     final int clums = cus.getColumnCount();
 
@@ -264,8 +264,8 @@ public class CostAdd extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void costAutoId() {
         //Data Load
-        costControler.open();
-        final Cursor cus = costControler.costAutoId();
+        costController.open();
+        final Cursor cus = costController.costAutoId();
         final int rows = cus.getCount();
         String costid = "c_";
         int idNo = 1;
@@ -351,8 +351,8 @@ public class CostAdd extends AppCompatActivity {
                     String cMemo = edit_memo.getText().toString();
                     String cSid = edit_sid.getText().toString();
 
-                    costControler.open();
-                    costControler.insertCost( cId, cDate, cSite, contents, cAmount, cMemo, cSid );
+                    costController.open();
+                    costController.insertCost( cId, cDate, cSite, contents, cAmount, cMemo, cSid );
 
                     Toast.makeText(getApplicationContext(),
                             "수입/경비 내용을  추가", Toast.LENGTH_SHORT).show();
@@ -378,8 +378,8 @@ public class CostAdd extends AppCompatActivity {
                     String cMemo = edit_memo.getText().toString();
                     String cSid = edit_sid.getText().toString();
 
-                    costControler.open();
-                    costControler.insertCost( cId, cDate, cSite, contents, cAmount, cMemo, cSid );
+                    costController.open();
+                    costController.insertCost( cId, cDate, cSite, contents, cAmount, cMemo, cSid );
 
                     Toast.makeText(getApplicationContext(),
                             "수입/경비 내용을  추가 했습니다.", Toast.LENGTH_SHORT).show();

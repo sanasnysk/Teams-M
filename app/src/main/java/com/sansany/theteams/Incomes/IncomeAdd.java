@@ -33,9 +33,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.sansany.theteams.Controler.IncomeControler;
-import com.sansany.theteams.Controler.JournalControler;
-import com.sansany.theteams.Controler.SitesControler;
+import com.sansany.theteams.Controller.IncomeController;
+import com.sansany.theteams.Controller.JournalController;
+import com.sansany.theteams.Controller.SitesController;
 import com.sansany.theteams.Database.DatabaseTeams;
 
 import java.text.DecimalFormat;
@@ -54,9 +54,9 @@ public class IncomeAdd extends AppCompatActivity {
             edit_leader, edit_collect, edit_tax,edit_memo, edit_tid;
     private ImageButton imageButton_backbar;
     private DatabaseTeams teamDB;
-    private IncomeControler incomeControler;
-    private JournalControler journalControler;
-    private SitesControler sitesControler;
+    private IncomeController incomeController;
+    private JournalController journalController;
+    private SitesController sitesController;
     private final DecimalFormat decimalFormat = new DecimalFormat("#,###");
     private String result_collect, result_tax = "";
     //ListView Dialog
@@ -83,9 +83,9 @@ public class IncomeAdd extends AppCompatActivity {
 
         //--- UI findViewById
         teamDB = new DatabaseTeams( this );
-        incomeControler = new IncomeControler( this );
-        journalControler = new JournalControler( this );
-        sitesControler = new SitesControler(this);
+        incomeController = new IncomeController( this );
+        journalController = new JournalController( this );
+        sitesController = new SitesController(this);
 
         edit_iid = findViewById( R.id.income_add_edit_iid );
         edit_date = findViewById( R.id.income_add_edit_date );
@@ -197,11 +197,11 @@ public class IncomeAdd extends AppCompatActivity {
         //title.setText("현장을 선택 하세요?");
 
         // database handler
-        sitesControler = new SitesControler(getApplicationContext());
-        sitesControler.open();
+        sitesController = new SitesController(getApplicationContext());
+        sitesController.open();
 
         // Spinner Drop down elements
-        List<String> data = sitesControler.getAllSpinnerTeam();
+        List<String> data = sitesController.getAllSpinnerTeam();
 
         String[] item_data = data.toArray(new String[0]);
         int size = 0;
@@ -245,7 +245,7 @@ public class IncomeAdd extends AppCompatActivity {
 
                     // outer for loop
                     //---Data Edit Site_Name Team_Leader Daily_Pay 출력
-                    final Cursor cus = sitesControler.teamSpinnerResult(leader);
+                    final Cursor cus = sitesController.teamSpinnerResult(leader);
                     final int rows = cus.getCount();
                     final int clums = cus.getColumnCount();
 
@@ -284,8 +284,8 @@ public class IncomeAdd extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void incomeAutoId() {
         //Data Load
-        incomeControler.open();
-        final Cursor cus = incomeControler.incomeAutoId();
+        incomeController.open();
+        final Cursor cus = incomeController.incomeAutoId();
         final int rows = cus.getCount();
         String journalid = "i_";
         int idNo = 1;
@@ -371,8 +371,8 @@ public class IncomeAdd extends AppCompatActivity {
                     String incTid = edit_tid.getText().toString();
                     String incMemo = edit_memo.getText().toString();
 
-                    incomeControler.open();
-                    incomeControler.insertIncome( incId, incDate, incLeader, incCollect, incTax, incMemo, incTid );
+                    incomeController.open();
+                    incomeController.insertIncome( incId, incDate, incLeader, incCollect, incTax, incMemo, incTid );
 
                     Toast.makeText(getApplicationContext(),
                             "수입/경비 내용을  추가", Toast.LENGTH_SHORT).show();

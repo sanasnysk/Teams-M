@@ -28,9 +28,9 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.sansany.theteams.Controler.IncomeControler;
-import com.sansany.theteams.Controler.JournalControler;
-import com.sansany.theteams.Controler.SitesControler;
+import com.sansany.theteams.Controller.IncomeController;
+import com.sansany.theteams.Controller.JournalController;
+import com.sansany.theteams.Controller.SitesController;
 import com.sansany.theteams.Database.DatabaseTeams;
 
 import java.text.DecimalFormat;
@@ -47,9 +47,9 @@ public class IncomeTable extends AppCompatActivity {
     private ImageButton imageButton_Backbar;
     private TableLayout income_table;
     private DatabaseTeams teamDB;
-    private JournalControler journalControler;
-    private SitesControler sitesControler;
-    private IncomeControler incomeControler;
+    private JournalController journalController;
+    private SitesController sitesController;
+    private IncomeController incomeController;
     private DecimalFormat formatDouble;
     private DecimalFormat formatPay;
 
@@ -69,9 +69,9 @@ public class IncomeTable extends AppCompatActivity {
         formatPay = new DecimalFormat("#,###");
 
         teamDB = new DatabaseTeams(this);
-        journalControler = new JournalControler(this);
-        sitesControler = new SitesControler(this);
-        incomeControler = new IncomeControler(this);
+        journalController = new JournalController(this);
+        sitesController = new SitesController(this);
+        incomeController = new IncomeController(this);
 
 
         //--- UI findViewById
@@ -321,8 +321,8 @@ public class IncomeTable extends AppCompatActivity {
         //Data Load
         String search = editText_search.getText().toString();
 
-        incomeControler.open();
-        final Cursor cus = incomeControler.incomeSearchSelect(search);
+        incomeController.open();
+        final Cursor cus = incomeController.incomeSearchSelect(search);
         final int rows = cus.getCount();
         final int clums = cus.getColumnCount();
 
@@ -412,7 +412,7 @@ public class IncomeTable extends AppCompatActivity {
             cus.moveToNext();
             income_table.addView(row);
         }
-        incomeControler.close();
+        incomeController.close();
 
     }
 
@@ -550,8 +550,8 @@ public class IncomeTable extends AppCompatActivity {
 
         String sDate = editText_StartDate.getText().toString();
         String eDate = editText_EndDate.getText().toString();
-        incomeControler.open();
-        final Cursor cus = incomeControler.selectDateLoad(sDate, eDate);
+        incomeController.open();
+        final Cursor cus = incomeController.selectDateLoad(sDate, eDate);
         final int rows = cus.getCount();
         final int clums = cus.getColumnCount();
 
@@ -643,7 +643,7 @@ public class IncomeTable extends AppCompatActivity {
             cus.moveToNext();
             income_table.addView(row);
         }
-        incomeControler.close();
+        incomeController.close();
 
     }
 
@@ -655,8 +655,8 @@ public class IncomeTable extends AppCompatActivity {
         String stDate = editText_StartDate.getText().toString();
         String enDate = editText_EndDate.getText().toString();
 
-        incomeControler.open();
-        Cursor curinc = incomeControler.sumDateSearch(stDate, enDate);
+        incomeController.open();
+        Cursor curinc = incomeController.sumDateSearch(stDate, enDate);
 
         if (curinc.getString(curinc.getColumnIndex("ione")) != null) {
             float day = curinc.getFloat(0);
@@ -716,7 +716,7 @@ public class IncomeTable extends AppCompatActivity {
         }
 
         curinc.close();
-        incomeControler.close();
+        incomeController.close();
 
     }
 
@@ -727,8 +727,8 @@ public class IncomeTable extends AppCompatActivity {
         String enDate = editText_EndDate.getText().toString().trim();
         String search = editText_search.getText().toString().trim();
 
-        incomeControler.open();
-        Cursor curinc = incomeControler.sumDateSearchJournal(stDate, enDate,search);
+        incomeController.open();
+        Cursor curinc = incomeController.sumDateSearchJournal(stDate, enDate,search);
 
         if (curinc.getString(curinc.getColumnIndex("ione")) != null) {
             float day = curinc.getFloat(0);
@@ -746,7 +746,7 @@ public class IncomeTable extends AppCompatActivity {
             textView_amount.setText("0 원 ");//--> amount
         }
 
-        incomeControler.close();
+        incomeController.close();
         curinc.close();
     }
 
@@ -757,8 +757,8 @@ public class IncomeTable extends AppCompatActivity {
         String enDate = editText_EndDate.getText().toString().trim();
         String search = editText_search.getText().toString().trim();
 
-        incomeControler.open();
-        Cursor curinc = incomeControler.sumDateSearchIncome(stDate, enDate,search);
+        incomeController.open();
+        Cursor curinc = incomeController.sumDateSearchIncome(stDate, enDate,search);
 
         if (curinc.getString(curinc.getColumnIndex("icollect")) != null) {
             int collects = curinc.getInt(2);
@@ -800,7 +800,7 @@ public class IncomeTable extends AppCompatActivity {
             textView_BalanceDay.setText("0 일 ");//--> day balance
         }
 
-        incomeControler.close();
+        incomeController.close();
         curinc.close();
     }
 
@@ -942,8 +942,8 @@ public class IncomeTable extends AppCompatActivity {
         String sDate = editText_StartDate.getText().toString();
         String eDate = editText_EndDate.getText().toString();
 
-        incomeControler.open();
-        final Cursor cus = incomeControler.selectTeamDate(search, sDate, eDate);
+        incomeController.open();
+        final Cursor cus = incomeController.selectTeamDate(search, sDate, eDate);
         final int rows = cus.getCount();
         final int clums = cus.getColumnCount();
 
@@ -1032,7 +1032,7 @@ public class IncomeTable extends AppCompatActivity {
             cus.moveToNext();
             income_table.addView(row);
         }
-        incomeControler.close();
+        incomeController.close();
 
     }
 
@@ -1044,8 +1044,8 @@ public class IncomeTable extends AppCompatActivity {
         String stDate = editText_StartDate.getText().toString().trim();
         String enDate = editText_EndDate.getText().toString().trim();
 
-        incomeControler.open();
-        final Cursor ctdsi = incomeControler.sumTeamDateSearch(search, stDate, enDate);
+        incomeController.open();
+        final Cursor ctdsi = incomeController.sumTeamDateSearch(search, stDate, enDate);
 
         if (ctdsi.getString(ctdsi.getColumnIndex("ione")) == null) {
             textView_day.setText("0 일");
@@ -1104,7 +1104,7 @@ public class IncomeTable extends AppCompatActivity {
         }
 
         ctdsi.close();
-        incomeControler.close();
+        incomeController.close();
     }
 
     //------- Income Table DateTime ---------------------------------------------------

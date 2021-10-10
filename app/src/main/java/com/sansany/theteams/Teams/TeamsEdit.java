@@ -23,7 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.sansany.theteams.Controler.TeamsControler;
+import com.sansany.theteams.Controller.TeamsController;
 import com.sansany.theteams.Database.DatabaseTeams;
 import java.util.Objects;
 
@@ -36,7 +36,7 @@ public class TeamsEdit extends AppCompatActivity {
     private EditText editText_tid,editText_leader,editText_phone,
             editText_date,editText_memo,editText_id;
     private DatabaseTeams teamDB;
-    private TeamsControler teamsControler;
+    private TeamsController teamsController;
     private MenuItem menuItem;
 
     @Override
@@ -52,7 +52,7 @@ public class TeamsEdit extends AppCompatActivity {
         setSupportActionBar( toolbar );
 
         teamDB = new DatabaseTeams( this );
-        teamsControler = new TeamsControler( this );
+        teamsController = new TeamsController( this );
 
         editText_tid = findViewById( R.id.edit_team_update_tid );
         editText_leader = findViewById( R.id.edit_team_update_leader );
@@ -128,8 +128,8 @@ public class TeamsEdit extends AppCompatActivity {
                 String memo = editText_memo.getText().toString();
 
                 if (editText_id.length() > 0) {
-                    teamsControler.open();
-                    teamsControler.updateTeam( id, tid, leader, phone, date, memo );
+                    teamsController.open();
+                    teamsController.updateTeam( id, tid, leader, phone, date, memo );
 
                     Toast.makeText( TeamsEdit.this,
                             "팀 정보를 수정 했습니다.", Toast.LENGTH_LONG ).show();
@@ -154,8 +154,8 @@ public class TeamsEdit extends AppCompatActivity {
                 String id = editText_id.getText().toString();
                 String tid = editText_tid.getText().toString();
                 if (editText_id.length() > 0) {
-                    teamsControler.open();
-                    teamsControler.deleteTeam( id );
+                    teamsController.open();
+                    teamsController.deleteTeam( id );
 
                     Toast.makeText( TeamsEdit.this,
                             "팀 정보를 삭제 했습니다." + tid, Toast.LENGTH_LONG ).show();

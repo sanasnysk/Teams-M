@@ -1,4 +1,4 @@
-package com.sansany.theteams.Controler;
+package com.sansany.theteams.Controller;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -14,16 +14,16 @@ import com.sansany.theteams.Database.DatabaseTeams;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JournalControler {
+public class JournalController {
     private DatabaseTeams teamDB;
     private final Context context;
     private SQLiteDatabase sqLiteDB;
 
-    public JournalControler( Context context ) {
+    public JournalController(Context context ) {
         this.context = context;
     }
 
-    public JournalControler open() throws SQLException {
+    public JournalController open() throws SQLException {
         teamDB = new DatabaseTeams(context);
         sqLiteDB = teamDB.getWritableDatabase();
         return this;

@@ -32,7 +32,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.sansany.theteams.Controler.JournalControler;
+import com.sansany.theteams.Controller.JournalController;
 import com.sansany.theteams.Database.DatabaseTeams;
 
 import java.text.DecimalFormat;
@@ -53,7 +53,7 @@ public class JournalAdd extends AppCompatActivity {
     private final DecimalFormat decimalFormat = new DecimalFormat("#,###");
     private ImageButton imageButton_backbar;
     private DatabaseTeams teamDB;
-    private JournalControler journalControler;
+    private JournalController journalController;
     //ListView Dialog
     private Button button_run;
     private TextView textview_result;
@@ -76,7 +76,7 @@ public class JournalAdd extends AppCompatActivity {
         setSupportActionBar( toolbar );
 
         teamDB = new DatabaseTeams( this );
-        journalControler = new JournalControler( this );
+        journalController = new JournalController( this );
 
         //---
         editText_jId = findViewById( R.id.journal_add_edit_jid );
@@ -212,8 +212,8 @@ public class JournalAdd extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void jourAutoId() {
         //Data Load
-        journalControler.open();
-        final Cursor cus = journalControler.journalAutoId();
+        journalController.open();
+        final Cursor cus = journalController.journalAutoId();
         final int rows = cus.getCount();
         String journalid = "j_";
         int idNo = 1;
@@ -239,11 +239,11 @@ public class JournalAdd extends AppCompatActivity {
         //title.setText("현장을 선택 하세요?");
 
         // database handler
-        journalControler = new JournalControler( getApplicationContext() );
-        journalControler.open();
+        journalController = new JournalController( getApplicationContext() );
+        journalController.open();
 
         // ListView Dropdown elements
-        List<String> data = journalControler.getAllSpinnerSite();
+        List<String> data = journalController.getAllSpinnerSite();
 
         String[] item_data = data.toArray(new String[0]);
         int size = 0;
@@ -286,8 +286,8 @@ public class JournalAdd extends AppCompatActivity {
 
                     // outer for loop
                     //---Data Edit Site_Name Team_Leader Daily_Pay 출력
-                    journalControler.open();
-                    final Cursor cus = journalControler.siteSpinnerResult( site );
+                    journalController.open();
+                    final Cursor cus = journalController.siteSpinnerResult( site );
                     final int rows = cus.getCount();
                     final int clums = cus.getColumnCount();
 
@@ -429,8 +429,8 @@ public class JournalAdd extends AppCompatActivity {
                     String sid = editText_sid.getText().toString();
                     String tid = editText_tid.getText().toString();
 
-                    journalControler.open();
-                    journalControler.insertJournal( jid,date,site,day,leader,memo,spay,jamount,sid,tid );
+                    journalController.open();
+                    journalController.insertJournal( jid,date,site,day,leader,memo,spay,jamount,sid,tid );
 
                     Toast.makeText(getApplicationContext(),
                             "일지 내용을 저장 했습니다.", Toast.LENGTH_SHORT).show();

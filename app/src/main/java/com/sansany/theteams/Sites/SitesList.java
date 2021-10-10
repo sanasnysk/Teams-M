@@ -18,7 +18,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.sansany.theteams.Contents.Sites;
-import com.sansany.theteams.Controler.SitesControler;
+import com.sansany.theteams.Controller.SitesController;
 import com.sansany.theteams.Database.DatabaseTeams;
 
 import com.sansany.theteams.RecyclerAdapter.SitesAdapter;
@@ -35,7 +35,7 @@ public class SitesList extends AppCompatActivity {
     private SitesAdapter sitesAdapter;
     DatabaseTeams db;
     SQLiteDatabase sql;
-    SitesControler sitesControler;
+    SitesController sitesController;
     private final int count = -1;
     RecyclerView.LayoutManager layoutManager;
 
@@ -63,7 +63,7 @@ public class SitesList extends AppCompatActivity {
         });
 
         db = new DatabaseTeams(this);
-        sitesControler = new SitesControler(this);
+        sitesController = new SitesController(this);
         sql = db.getReadableDatabase();
 
         mRecyclerView = findViewById(R.id.recycler_site);
@@ -81,8 +81,8 @@ public class SitesList extends AppCompatActivity {
     @SuppressLint("NotifyDataSetChanged")
     private void getSiteRecyclerView(){
         list = new ArrayList<>();
-        sitesControler.open();
-        list = sitesControler.getAllSiteList();
+        sitesController.open();
+        list = sitesController.getAllSiteList();
 
         sitesAdapter = new SitesAdapter(this.list);
         mRecyclerView.setAdapter(sitesAdapter);

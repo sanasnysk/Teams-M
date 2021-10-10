@@ -28,8 +28,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sansany.theteams.Controler.JournalControler;
-import com.sansany.theteams.Controler.SitesControler;
+import com.sansany.theteams.Controller.JournalController;
+import com.sansany.theteams.Controller.SitesController;
 import com.sansany.theteams.Database.DatabaseTeams;
 
 import java.text.DecimalFormat;
@@ -45,8 +45,8 @@ public class JournalTable extends AppCompatActivity {
     private EditText editText_StartDate, editText_EndDate, editText_Search;
     private TextView textView_Day, textView_inputDay, textView_Amount, textView_inputAmount, textView_title;
     private DatabaseTeams teamDB;
-    private JournalControler journalControler;
-    private SitesControler sitesControler;
+    private JournalController journalController;
+    private SitesController sitesController;
     private DecimalFormat formatDouble;
     private  DecimalFormat formatPay;
 
@@ -68,8 +68,8 @@ public class JournalTable extends AppCompatActivity {
 
         //--- UI findViewById
         teamDB = new DatabaseTeams( this );
-        journalControler = new JournalControler( this );
-        sitesControler = new SitesControler( this );
+        journalController = new JournalController( this );
+        sitesController = new SitesController( this );
 
         journal_Table = findViewById( R.id.journal_table );
 
@@ -135,8 +135,8 @@ public class JournalTable extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void afterTextChanged( Editable s) {
-                journalControler.open();
-                final Cursor cusLoad = journalControler.selectAllJournal(  );
+                journalController.open();
+                final Cursor cusLoad = journalController.selectAllJournal(  );
                 final int rowCount = cusLoad.getCount();
                 if (rowCount != 0){
                     journal_Table.removeAllViews();
@@ -151,7 +151,7 @@ public class JournalTable extends AppCompatActivity {
                 }else {
                     //Do nothing
                 }
-                journalControler.close();
+                journalController.close();
             }
         } );
 
@@ -171,8 +171,8 @@ public class JournalTable extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 //teamControl.open();
-                journalControler.open();
-                final Cursor cusLoad = journalControler.selectAllJournal(  );
+                journalController.open();
+                final Cursor cusLoad = journalController.selectAllJournal(  );
                 final int rowCount = cusLoad.getCount();
                 if (rowCount != 0){
                     journal_Table.removeAllViews();
@@ -418,8 +418,8 @@ public class JournalTable extends AppCompatActivity {
         String editSearchSite = editText_Search.getText().toString();
         String startDay = editText_StartDate.getText().toString();
         String endDay = editText_EndDate.getText().toString();
-        journalControler.open();
-        final Cursor cus = journalControler.searchJournal( editSearchSite );
+        journalController.open();
+        final Cursor cus = journalController.searchJournal( editSearchSite );
         final int rows = cus.getCount();
         final int columns = cus.getColumnCount();
 
@@ -515,7 +515,7 @@ public class JournalTable extends AppCompatActivity {
             cus.moveToNext();
             journal_Table.addView( row );
         }
-        journalControler.close();
+        journalController.close();
 
     }
 
@@ -694,8 +694,8 @@ public class JournalTable extends AppCompatActivity {
         journal_Table.addView( row0 );
 
         //Data Load
-        journalControler.open();
-        final Cursor cus = journalControler.selectAllJournal();
+        journalController.open();
+        final Cursor cus = journalController.selectAllJournal();
         final int rows = cus.getCount();
         final int columns = cus.getColumnCount();
 
@@ -790,7 +790,7 @@ public class JournalTable extends AppCompatActivity {
             cus.moveToNext();
             journal_Table.addView( row );
         }
-        journalControler.close();
+        journalController.close();
 
     }
 
@@ -973,8 +973,8 @@ public class JournalTable extends AppCompatActivity {
         String searchSite = editText_Search.getText().toString();
         String startDay = editText_StartDate.getText().toString();
         String endDay = editText_EndDate.getText().toString();
-        journalControler.open();
-        final Cursor cus = journalControler.searchSiteJournal( searchSite, startDay, endDay );
+        journalController.open();
+        final Cursor cus = journalController.searchSiteJournal( searchSite, startDay, endDay );
         final int rows = cus.getCount();
         final int columns = cus.getColumnCount();
 
@@ -1069,7 +1069,7 @@ public class JournalTable extends AppCompatActivity {
             cus.moveToNext();
             journal_Table.addView( row );
         }
-        journalControler.close();
+        journalController.close();
 
     }
 
@@ -1250,8 +1250,8 @@ public class JournalTable extends AppCompatActivity {
         //Data Load
         String startDay = editText_StartDate.getText().toString();
         String endDay = editText_EndDate.getText().toString();
-        journalControler.open();
-        final Cursor cus = journalControler.searchDateJournal( startDay, endDay );
+        journalController.open();
+        final Cursor cus = journalController.searchDateJournal( startDay, endDay );
         final int rows = cus.getCount();
         final int columns = cus.getColumnCount();
 
@@ -1346,7 +1346,7 @@ public class JournalTable extends AppCompatActivity {
             cus.moveToNext();
             journal_Table.addView( row );
         }
-        journalControler.close();
+        journalController.close();
 
     }
 
@@ -1360,11 +1360,11 @@ public class JournalTable extends AppCompatActivity {
         //String spinItemSite = spinner_Site.getSelectedItem().toString();
         String search_site_date = editText_Search.getText().toString();
 
-        journalControler.open();
+        journalController.open();
         if (search_site_date.equals("현장을 선택 하세요?")){
             //to do nothing
         }else if (!search_site_date.equals("현장을 선택 하세요?")){
-            final Cursor cus = journalControler.sumSiteDateJournal( startDay, endDay, search_site_date );
+            final Cursor cus = journalController.sumSiteDateJournal( startDay, endDay, search_site_date );
             final int rows = cus.getCount();
             final int columns = cus.getColumnCount();
 
@@ -1379,7 +1379,7 @@ public class JournalTable extends AppCompatActivity {
 
             cus.close();
         }
-        journalControler.close();
+        journalController.close();
 
     }
 
@@ -1391,11 +1391,11 @@ public class JournalTable extends AppCompatActivity {
         String startDay = editText_StartDate.getText().toString();
         String endDay = editText_EndDate.getText().toString();
 
-        journalControler.open();
-        final Cursor cusLoad = journalControler.selectAllJournal(  );
+        journalController.open();
+        final Cursor cusLoad = journalController.selectAllJournal(  );
         final int rowCount = cusLoad.getCount();
         if (rowCount != 0) {
-            Cursor cus = journalControler.searchDateJournalSum( startDay, endDay );
+            Cursor cus = journalController.searchDateJournalSum( startDay, endDay );
             float day = cus.getFloat( 0 );
             String formatted_day = formatDouble.format( day );
             textView_inputDay.setText( formatted_day + "일" );

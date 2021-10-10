@@ -29,8 +29,8 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.sansany.theteams.Controler.CostControler;
-import com.sansany.theteams.Controler.SitesControler;
+import com.sansany.theteams.Controller.CostController;
+import com.sansany.theteams.Controller.SitesController;
 import com.sansany.theteams.Database.DatabaseTeams;
 
 import java.text.DecimalFormat;
@@ -46,8 +46,8 @@ public class CostTable extends AppCompatActivity {
     private EditText editText_StartDate, editText_EndDate, editText_Search;
     private TextView textView_Amount, textView_inputAmount, textView_title;
     private DatabaseTeams teamDB;
-    private CostControler costControler;
-    private SitesControler sitesControler;
+    private CostController costController;
+    private SitesController sitesController;
     private DecimalFormat formatDouble;
     private DecimalFormat formatPay;
 
@@ -68,8 +68,8 @@ public class CostTable extends AppCompatActivity {
 
         //--- UI findViewById
         teamDB = new DatabaseTeams(this);
-        costControler = new CostControler(this);
-        sitesControler = new SitesControler(this);
+        costController = new CostController(this);
+        sitesController = new SitesController(this);
 
         cost_table = findViewById(R.id.cost_table);
 
@@ -360,8 +360,8 @@ public class CostTable extends AppCompatActivity {
         //Data Load
         String startDay = editText_StartDate.getText().toString();
         String endDay = editText_EndDate.getText().toString();
-        costControler.open();
-        final Cursor cus = costControler.selectDateCost(startDay,endDay);
+        costController.open();
+        final Cursor cus = costController.selectDateCost(startDay,endDay);
         final int rows = cus.getCount();
         final int columns = cus.getColumnCount();
 
@@ -455,7 +455,7 @@ public class CostTable extends AppCompatActivity {
             cus.moveToNext();
             cost_table.addView(row);
         }
-        costControler.close();
+        costController.close();
 
     }
 
@@ -465,8 +465,8 @@ public class CostTable extends AppCompatActivity {
         String stda = editText_StartDate.getText().toString();
         String enda = editText_EndDate.getText().toString();
 
-        costControler.open();
-        Cursor cur = costControler.sumSelectDateCost(stda,enda);
+        costController.open();
+        Cursor cur = costController.sumSelectDateCost(stda,enda);
 
         if (cur.getString(cur.getColumnIndex("camount")) != null){
             int amounts = cur.getInt(0);
@@ -613,8 +613,8 @@ public class CostTable extends AppCompatActivity {
         String searchSite = editText_Search.getText().toString();
         String startDay = editText_StartDate.getText().toString();
         String endDay = editText_EndDate.getText().toString();
-        costControler.open();
-        final Cursor cus = costControler.searchSiteDate(searchSite, startDay, endDay);
+        costController.open();
+        final Cursor cus = costController.searchSiteDate(searchSite, startDay, endDay);
         final int rows = cus.getCount();
         final int columns = cus.getColumnCount();
 
@@ -708,7 +708,7 @@ public class CostTable extends AppCompatActivity {
             cus.moveToNext();
             cost_table.addView(row);
         }
-        costControler.close();
+        costController.close();
 
     }
 
@@ -719,8 +719,8 @@ public class CostTable extends AppCompatActivity {
         String stda = editText_StartDate.getText().toString();
         String enda = editText_EndDate.getText().toString();
 
-        costControler.open();
-        Cursor cur = costControler.sumSearchSiteDate(site,stda,enda);
+        costController.open();
+        Cursor cur = costController.sumSearchSiteDate(site,stda,enda);
 
         if (cur.getString(cur.getColumnIndex("camount")) != null){
             int amounts = cur.getInt(0);

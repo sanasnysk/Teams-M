@@ -35,7 +35,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.sansany.theteams.Controler.SitesControler;
+import com.sansany.theteams.Controller.SitesController;
 import com.sansany.theteams.Database.DatabaseTeams;
 
 import java.text.DecimalFormat;
@@ -54,7 +54,7 @@ public class SitesEdit extends AppCompatActivity {
     private EditText editText_sid, editText_name, editText_leader, editText_pay,
             editText_manager, editText_date, editText_memo, editText_id,editText_tid;
     private DatabaseTeams teamDB;
-    private SitesControler sitesControler;
+    private SitesController sitesController;
     private final DecimalFormat decimalFormat = new DecimalFormat("#,###");
     private String result="";
 
@@ -82,7 +82,7 @@ public class SitesEdit extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         teamDB = new DatabaseTeams(this);
-        sitesControler = new SitesControler(this);
+        sitesController = new SitesController(this);
 
         //findViewById
         imageButton_backbar = findViewById(R.id.site_update_back_toolbar);
@@ -209,8 +209,8 @@ public class SitesEdit extends AppCompatActivity {
                     String id = editText_id.getText().toString();
                     String tid = editText_tid.getText().toString();
 
-                    sitesControler.open();
-                    sitesControler.updateSite(id, siteId, name, leader, pay, manager, date, memo,tid);
+                    sitesController.open();
+                    sitesController.updateSite(id, siteId, name, leader, pay, manager, date, memo,tid);
 
                     Intent intent_update = new Intent(getApplicationContext(), SitesList.class);
                     startActivity(intent_update);
@@ -225,8 +225,8 @@ public class SitesEdit extends AppCompatActivity {
                 String id = editText_id.getText().toString();
                 String tid = editText_sid.getText().toString();
                 if (editText_id.length() > 0) {
-                    sitesControler.open();
-                    sitesControler.deleteSite(id);
+                    sitesController.open();
+                    sitesController.deleteSite(id);
 
                     Toast.makeText(SitesEdit.this,
                             tid + "를 삭제 했습니다.", Toast.LENGTH_LONG).show();
@@ -256,11 +256,11 @@ public class SitesEdit extends AppCompatActivity {
         final AlertDialog dialog = builder.create();
 
         // database handler
-        sitesControler = new SitesControler( getApplicationContext() );
-        sitesControler.open();
+        sitesController = new SitesController( getApplicationContext() );
+        sitesController.open();
 
         // ListView Dropdown elements
-        List<String> data = sitesControler.getAllSpinnerTeam();
+        List<String> data = sitesController.getAllSpinnerTeam();
         //int[] image_data = {R.drawable.img_s0002};
         String[] item_data = data.toArray(new String[0]);
         int size = 0;

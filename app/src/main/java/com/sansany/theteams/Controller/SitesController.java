@@ -1,4 +1,4 @@
-package com.sansany.theteams.Controler;
+package com.sansany.theteams.Controller;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -16,16 +16,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class SitesControler {
+public class SitesController {
     private DatabaseTeams teamDB;
     private final Context context;
     private SQLiteDatabase sqLiteDB;
 
-    public SitesControler(Context context) {
+    public SitesController(Context context) {
         this.context = context;
     }
 
-    public SitesControler open() throws SQLException {
+    public SitesController open() throws SQLException {
         teamDB = new DatabaseTeams( context );
         sqLiteDB = teamDB.getWritableDatabase();
         return this;

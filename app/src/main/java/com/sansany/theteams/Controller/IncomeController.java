@@ -1,4 +1,4 @@
-package com.sansany.theteams.Controler;
+package com.sansany.theteams.Controller;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -11,16 +11,16 @@ import com.sansany.theteams.Contents.JournalsContents;
 import com.sansany.theteams.Contents.SitesContents;
 import com.sansany.theteams.Database.DatabaseTeams;
 
-public class IncomeControler {
+public class IncomeController {
     private DatabaseTeams teamDB;
     private final Context context;
     private SQLiteDatabase sqLiteDB;
 
-    public IncomeControler(Context context) {
+    public IncomeController(Context context) {
         this.context = context;
     }
 
-    public IncomeControler open() throws SQLException {
+    public IncomeController open() throws SQLException {
         teamDB = new DatabaseTeams(context);
         sqLiteDB = teamDB.getWritableDatabase();
         return this;
